@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/nav_home"
+        android:title="@string/home_icon"
+        android:icon="@drawable/ic_home"
+        app:showAsAction="ifRoom"
+       />
+
+    <item
+        android:id="@+id/nav_upload"
+        android:title="@string/upload_pictures"
+        android:icon="@drawable/ic_upload_a_photo"
+        app:showAsAction="ifRoom"
+        />
+
+    <item
+        android:id="@+id/nav_photo_library"
+        android:title="@string/all_pictures"
+        android:icon="@drawable/ic_photo_library"
+        app:showAsAction="ifRoom"
+
+        />
+
+    <item
+        android:id="@+id/nav_rated_pictures"
+        android:title="@string/rated_pictures"
+        android:icon="@drawable/ic_star_rate"
+        app:showAsAction="ifRoom"
+        />
+
+</menu>
+
