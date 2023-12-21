@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">SumsiMalwettbewerb</string>
+    <string name="bank_logo">Bank-Logo</string>
+    <string name="sumsi_logo">Sumsi-Logo</string>
+    <string name="sumsi_welcome_message"><b>Liebe Kinder, liebe Eltern!</b>
+         Wie jedes Jahr gibt es auch heuer unseren traditionellen Sumsi Malwettbewerb.
+         Wieder digital, wieder mit Voting und großer Online-Galerie.
+         Jedes Elternteil, das bis zum <b>Invalid Date</b>  die Zeichnung seines Kindes mithilfe des nachstehenden Kontaktformulares hochlädt und einreicht, wird anschließend in der großen Sumsi Galerie auf www.raiffeisen-sumsi.at veröffentlicht.<br/>
+         Ich freue mich auf viele bunte Zeichnungen und ein spannendes Voting!
+         <b>EURE RAIFFEISEN </b><b><i><font color ="#880000">SUMSI</font></i></b>
+    </string>
+    <string name="home_icon">Home</string>
+    <string name="upload_pictures">Upload pictures</string>
+    <string name="all_pictures">Photo Library</string>
+    <string name="rated_pictures">Rated pictures</string>
+
 </resources>
