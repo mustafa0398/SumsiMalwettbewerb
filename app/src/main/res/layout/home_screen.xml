@@ -7,6 +7,7 @@
     android:layout_centerInParent="true"
     android:background="#FBF315">
 
+
     <ImageView
         android:id="@+id/sumsi_logo"
         android:layout_width="257dp"
