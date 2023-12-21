@@ -5,6 +5,24 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <!-- Toolbar -->
+    <include
+        android:id="@+id/toolbar_layout"
+        layout="@layout/toolbar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <!-- ScrollView umschließt das home_screen Layout -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/toolbar_layout"
+        android:layout_above="@id/bottom_nav_view">
+
+        <include layout="@layout/home_screen"/>
+    </ScrollView>
+
+    <!-- NavigationBar -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_nav_view"
         android:layout_width="match_parent"
@@ -15,9 +33,5 @@
         app:menu="@menu/menu_bottom"
         app:labelVisibilityMode="unlabeled"/>
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"/>
-
 </RelativeLayout>
+
