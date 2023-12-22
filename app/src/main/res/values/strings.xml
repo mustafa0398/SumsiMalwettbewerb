@@ -2,16 +2,103 @@
     <string name="app_name">SumsiMalwettbewerb</string>
     <string name="bank_logo">Bank-Logo</string>
     <string name="sumsi_logo">Sumsi-Logo</string>
+    <string name="welcome_message"><b>Herzlich Willkommen beim grossen <font color="#880000">SUMSI</font> Malwettbewerb!</b></string>
     <string name="sumsi_welcome_message"><b>Liebe Kinder, liebe Eltern!</b>
          Wie jedes Jahr gibt es auch heuer unseren traditionellen Sumsi Malwettbewerb.
          Wieder digital, wieder mit Voting und großer Online-Galerie.
-         Jedes Elternteil, das bis zum <b>Invalid Date</b>  die Zeichnung seines Kindes mithilfe des nachstehenden Kontaktformulares hochlädt und einreicht, wird anschließend in der großen Sumsi Galerie auf www.raiffeisen-sumsi.at veröffentlicht.<br/>
+         Jedes Elternteil, das bis zum <b>Invalid Date</b>  die Zeichnung seines Kindes mithilfe des nachstehenden Kontaktformulares hochlädt und einreicht, wird anschließend in der großen Sumsi Galerie auf www.raiffeisen-sumsi.at veröffentlicht.<br />
          Ich freue mich auf viele bunte Zeichnungen und ein spannendes Voting!
-         <b>EURE RAIFFEISEN </b><b><i><font color ="#880000">SUMSI</font></i></b>
+         <b>EURE RAIFFEISEN </b><b><i><font color="#880000">SUMSI</font></i></b>
     </string>
     <string name="home_icon">Home</string>
     <string name="upload_pictures">Upload pictures</string>
     <string name="all_pictures">Photo Library</string>
     <string name="rated_pictures">Rated pictures</string>
+    <string name="showPrivacyDetails">
+        <![CDATA[
+        <strong>Datenschutzhinweise lt. DSGVO</strong><br>
+        <strong>Datenschutzhinweise gem. Art. 13 DSGVO für den Sumsi Malwettbewerb</strong><br>
+        <<br>Wir behandeln Ihre personenbezogenen Daten vertraulich und entsprechend den gesetzlichen Vorschriften. Wir informieren Sie hiermit über die Verarbeitung Ihrer personenbezogenen Daten sowie der Ihres Kindes und der Ihnen zustehenden datenschutzrechtlichen Ansprüche und Rechte.
+        Der Inhalt und Umfang der Datenverarbeitung richtet sich maßgeblich nach den jeweils von Ihnen im Rahmen des Malwettbewerbs über das Online-Kontaktformular bekannt gegebenen Informationen.<br>
+        <br><strong>Wer ist für die Datenverarbeitung verantwortlich und an wen können Sie sich wenden?</strong><br>
+        <br>Für die Datenverarbeitung verantwortlich ist die
+        Raiffeisenlandesbank Kärnten- Rechenzentrum und Revisionsverband, registrierte Genossenschaft mit beschränkter Haftung
+        Raiffeisenplatz 1 I 9020 Klagenfurt am Wörthersee
+        <br><strong> T + 43 406 993 00</strong>
+        <br><strong> E info@rbgk.raiffeisen.at</strong>
+
+        <br>Alternativ können Sie sich auch gerne an den Datenschutzbeauftragten wenden:
+        Raiffeisenplatz 1 I 9020 Klagenfurt am Wörthersee
+        <br><strong> T +43 463 993 00 – 12201</strong><br>
+
+        <br><strong>Welche personenbezogenen Daten werden im Rahmen des Malwettbewerbes verarbeitet?</strong><br>
+        <br>Wir verarbeiten jene personenbezogenen Daten, die wir von Ihnen im Rahmen des Malwettbewerbes über das Online-Kontaktformular erhalten haben.
+        Zu den personenbezogenen Daten zählen Ihre persönlichen Detailangaben und Kontaktdaten (Vor- und Nachname, E-Mail-Adresse) sowie die Ihres Kindes (Vorname und Alter).
+        Für welchen Zweck werden Ihre personenbezogenen Daten sowie die Ihres Kindes verarbeitet?
+        Ihre angegebenen personenbezogenen Daten sowie die Ihres Kindes zur Teilnahme am Malwettbewerb werden von der Raiffeisen Landesbank ausschließlich zur Durchführung und Bearbeitung des Malwettbewerbs verwendet.
+        Der Vorname Ihres Kindes sowie Ihre E-Mail-Adresse wird für die Ermittlung und Verständigung der Gewinner benötigt und nur zu diesem Zweck verarbeitet.<br>
+
+        <br><strong>Wer erhält die von Ihnen angegebenen personenbezogenen Daten?</strong><br>
+        <br>Ihre personenbezogenen Daten sowie die Ihres Kindes erhalten nur jene MitarbeiterInnen der Raiffeisen Landesbank Kärnten, die den Malwettbewerb abwickeln, um die Gewinner ermitteln und verständigen zu können.
+        Eine sonstige Weitergabe Ihrer Daten an Dritte erfolgt nicht.<br>
+
+        <br><strong>Wie lange werden Ihre angegebenen personenbezogenen Daten gespeichert?</strong><br>
+        <br>Ihre personenbezogenen Daten sowie die Ihres Kindes werden nach Beendigung der Abwicklung des Malwettbewerbs und nach Ermittlung und Verständigung der Gewinner gelöscht. Die Löschung Ihrer Daten sowie jener Ihres Kindes erfolgt mit spätestens 30.11.2020.<br>
+
+        <br><strong>Welche Datenschutzrechte stehen Ihnen zu?</strong><br>
+        <br>Sie haben das Recht auf Auskunft, Berichtigung, Löschung oder Einschränkung der Verarbeitung Ihrer sowie Ihres Kindes gespeicherten Daten, ein Recht auf Datenübertragbarkeit, das Recht auf Widerspruch gegen die Verarbeitung sowie ein Recht auf Widerruf gemäß den Voraussetzungen des Datenschutzrechts.
+        Diesbezügliche Anträge können Sie gerne an <strong>datenschutz@rbgk.raiffeisen.at</strong> anrichten.
+        Davon unberührt bleibt Ihr Recht, sich bei der zuständige Datenschutzbehörde per E-Mail an <strong>dsb@dsb.gv.at</strong> oder postalisch an Österreichische Datenschutzbehörde, Barichgasse 40-42, 1030 Wien zu beschweren.<br>
+        <br>Stand: Oktober 2020
+]]>
+</string>
+    <string name="showTermsAndCondition">
+        <![CDATA[
+        <strong>Teilnahmebedingungen für den Sumsi Malwettbewerb</strong><br>
+        <br>Jeder Elternteil, der vom 19. Oktober bis 5. November 2021 eine Zeichnung seines Kindes (das das 14. Lebensjahr noch nicht vollendet hat) über das vorliegende Kontaktformular einreicht, hat die Chance auf den Hauptgewinn und auf weitere tolle Preise. Alle eingereichten Zeichnungen werden in der großen Sumsi Galerie auf <strong>www.raiffeisen-sumsi.at </strong>veröffentlicht.
+        Aus allen eingereichten Zeichnungen werden 10 Zeichnungen gezogen. Auf diese 10 Gewinner warten tolle Preise.<br>
+        <br><strong>Mit der Teilnahme am Sumsi Malwettbewerb erklären die Teilnehmer, mit den folgenden Teilnahmebedingungen einverstanden zu sein:</strong><br>
+          <br> * Teilnahmeberechtigt sind alle natürlichen Personen.<br>
+          <br> * Die Teilnahme am Malwettbewerb ist kostenlos, freiwillig und unabhängig von Bankgeschäften. Die Gewinner werden per Zufallsprinzip ermittelt. Der Rechtsweg ist ausgeschlossen. Gewinne können nicht in bar abgelöst, übertragen oder umgetauscht werden.<br>
+          <br> *  Eine Teilnahme über Gewinnspiel-Vereine oder automatisierte Dienste ist nicht gestattet. Pro Person ist nur eine Teilnahme möglich. Der/Die TeilnehmerIn kann im Falle des Gewinnes die Sachpreise innerhalb von 4 Wochen ab elektronischer Verständigung entgegennehmen, danach verfällt dieser Anspruch und der Gewinn.<br>
+          <br> *  Der Veranstalter übernimmt keine Haftung für etwaige technische Schwierigkeiten.
+          <br> *  Der/Die TeilnehmerIn erklärt, dass seine/ihre Einreichung zum Malwettbewerb (die Zeichnung) nicht gegen die Rechte Dritter, insbesondere Urheberrechte und Persönlichkeitsrechte, verstößt. Er/sie erklärt sich mit der Veröffentlichung der Zeichnung im Rahmen des Malwettbewerbs bzw. auf der Homepage des Veranstalters ausdrücklich einverstanden<br>
+          <br> *  Falls andere Personen an der Erstellung der Zeichnung beteiligt waren oder Dritten exklusive Rechte am eingereichten Beitrag eingeräumt wurden, so müssen sich diese mit der Einreichung und späteren Veröffentlichung im Rahmen des Malwettbewerbs einverstanden erklären.<br>
+          <br> *  Der Veranstalter behält sich das Recht vor, in bestimmten Anlassfällen von TeilnehmerInnen einen schriftlichen Nachweis für die Erfüllung der oben genannten Voraussetzungen einzufordern. Wird der Nachweis bei Aufforderung nicht erbracht, kann der/die TeilnehmerIn vom Veranstalter von der Teilnahme ausgeschlossen werden.<br>
+          <br> *  Der Veranstalter behält sich das Recht vor, TeilnehmerInnen, die gegen die Teilnahmebedingungen, gegen Strafgesetze oder sonstige Vorschriften bzw. die guten Sitten verstoßen oder durch technische Manipulation versuchen, den Malwettbewerb in irgendeiner Form zu beeinflussen, von eben diesem auszuschließen. Im Falle eines Ausschlusses vom Malwettbewerb steht es dem Veranstalter frei, die Gewinne auch noch nachträglich abzuerkennen und zurückzufordern.<br>
+          <br> *  Der Veranstalter behält sich das Recht vor, den Malwettbewerb bzw. die Verlosung jederzeit aus wichtigem Grund ohne Vorankündigung zu beenden oder zu unterbrechen. Dies gilt unter anderem, wenn der planmäßige Ablauf des Malwettbewerbs bzw. die Verlosung gestört oder verhindert werden würde. Dem/der TeilnehmerIn erwachsen daraus keinerlei Rechte.<br>
+]]>
+</string>
+    <string name="showCookiesPreferences">
+        <![CDATA[
+        <strong>Cookie Richtlinien</strong><br>
+        <br>Wir nehmen den Schutz Ihrer persönlichen Daten sehr ernst. Wir behandeln Ihre personenbezogenen Daten vertraulich und entsprechend der gesetzlichen Vorschriften. In dieser Datenschutzerklärung informieren wir Sie über die Datenverarbeitung im Rahmen unserer Website.<br>
+        Die Nutzung unserer Webseite ist in der Regel ohne eigenständige Angabe Ihrer personenbezogenen  Daten möglich. Soweit auf unseren Seiten personenbezogene Daten (beispielsweise Name, Anschrift oder E-Mail-Adressen) erhoben werden, erfolgt dies stets, um die Nutzung der Website ermöglichen zu können oder auf freiwilliger Basis. Beispielsweise ist die Verarbeitung der IP-Adresse technisch bedingt und kann nicht unterbunden werden.<br>
+        <br><strong>DATENSCHUTZRECHTLICHER VERANTWORTLICHER</strong><br>
+        <br>Diese Website wird von der Raiffeisenlandesbank Kärnten- Rechenzentrum und Revisionsverband, registrierte Genossenschaft mit beschränkter Haftung, Raiffeisenplatz 1, 9020 Klagenfurt am Wörthersee,  betrieben.
+        Alternativ können Sie sich auch gerne an unseren Datenschutzbeauftragten wenden:
+        <strong>datenschutz@rbgk.raiffeisen.at</strong>
+        Raiffeisenplatz 1 | 9020 Klagenfurt am Wörthersee<br>
+        <strong>T +43 463 993 00-12201</strong><br>
+        <br><strong>COOKIES</strong><br>
+        <br>Unsere Website verwendet so genannte Cookies. Cookies sind Textdateien, die beim Besuch der Website auf Ihrem Endgerät gespeichert werden.
+        Wir verwenden Cookies, um anonymisierte Analysen der Benutzung der Website durchzuführen.  Cookies setzen wir weiters dazu ein, Ihnen zusätzliche Funktionen auf der Website anbieten zu können, um Interaktionen mit der Webseite einfacher zu gestalten und eine fehlerfreie Anwendung sicherzustellen (z.B. zur Erleichterung der Navigation auf einer Website oder um Ihre Präferenzen und Einstellungen für den nächsten Besuch zu speichern).<br>
+        <br><strong>Erforderliche Cookies:</strong><br>
+         <br>Cookies, die für die grundlegenden Funktionen der Website notwendig sind, verarbeiten wir aufgrund unseres berechtigten Interesses, Ihnen unsere Inhalte präsentieren zu können, bzw. aufgrund vertraglicher oder gesetzlicher Verpflichtungen Ihnen auf unserer Website Informationen bereitzuhalten.<br>
+         <br><strong>Funktionelle Cookies:</strong><br>
+         <br>Cookies, die es uns ermöglichen die Analyse der Websitenutzung vorzunehmen, verwenden wir aufgrund Ihrer bei Benutzung unserer Website erklärten Einwilligung.<br>
+        <br><strong>Marketing-Cookies:</strong><br>
+         <br>Cookies, die es uns ermöglichen, Ihnen auf Ihre Interessen abgestimmte Werbung zu unterbreiten, verwenden wir ebenfalls aufgrund Ihrer bei Benutzung unserer Website erklärten Einwilligung.<br>
+        Einige Cookies bleiben auf Ihrem Endgerät gespeichert, bis Sie diese löschen. Sie ermöglichen es uns, Ihren Browser beim nächsten Besuch wiederzuerkennen. Die meisten der von uns verwendeten Cookies werden nach Ende des Besuchs unserer Website wieder gelöscht (sogenannte Session-Cookies).
+        Cookies können blockiert, deaktiviert oder gelöscht werden. Hierfür steht Ihnen eine Vielzahl von Werkzeugen zur Verfügung (einschließlich Browser-Steuerelemente und -Einstellungen).  Informationen hierzu finden Sie im Hilfebereich des von Ihnen benutzten Webbrowsers. Bei der Deaktivierung aller von uns verwendeten Cookies kann z.B. die Darstellung der Website eingeschränkt sein.
+
+         ]]>
+    </string>
+    <string name="info1"> Datenschutz</string>
+    <string name="info2"> Teilnahmebedingungen</string>
+    <string name="info3"> Impressum</string>
+    <string name="info4"> Disclaimer</string>
+    <string name="info5"> AGB</string>
+    <string name="info6"> Cookie-Präferenzen</string>
 
 </resources>

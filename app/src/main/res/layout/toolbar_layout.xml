@@ -27,5 +27,4 @@
             android:src="@drawable/raiffeisen_logo" />
 
     </androidx.appcompat.widget.Toolbar>
-
 </androidx.constraintlayout.widget.ConstraintLayout>
