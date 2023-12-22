@@ -18,7 +18,7 @@
         android:layout_height="match_parent"
         android:layout_below="@id/toolbar_layout"
         app:navGraph="@navigation/navigation"
-        android:name="androidx.navigation.fragment.NavHostFragment"
+
         app:defaultNavHost="true"/>
 
     <!-- NavigationBar -->
