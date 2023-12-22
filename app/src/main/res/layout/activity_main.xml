@@ -4,22 +4,23 @@
     android:layout_height="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <!-- Toolbar -->
     <include
         android:id="@+id/toolbar_layout"
         layout="@layout/toolbar_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
-    <!-- ScrollView umschließt das home_screen Layout -->
-    <ScrollView
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/nav_host_fragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/toolbar_layout"
-        android:layout_above="@id/bottom_nav_view"
-        android:background="#FBF315">
-        <include layout="@layout/home_screen"/>
+        app:navGraph="@navigation/navigation"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        app:defaultNavHost="true"/>
 
-    </ScrollView>
     <!-- NavigationBar -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_nav_view"
@@ -30,4 +31,5 @@
         app:itemIconTint="#FBF315"
         app:menu="@menu/menu_bottom"
         app:labelVisibilityMode="unlabeled"/>
+
 </RelativeLayout>
