@@ -1,0 +1,17 @@
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.example.sumsimalwettbewerb.MainFragment"
+        android:label="main_fragment"
+        tools:layout="@layout/home_screen" />
+
+    <fragment
+        android:id="@+id/nav_upload"
+        android:name="com.example.sumsimalwettbewerb.UploadFragment"
+        android:label="upload_fragment"
+        tools:layout="@layout/upload_images" />
+</navigation>
