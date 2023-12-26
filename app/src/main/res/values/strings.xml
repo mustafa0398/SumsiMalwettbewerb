@@ -100,5 +100,6 @@
     <string name="info4"> Disclaimer</string>
     <string name="info5"> AGB</string>
     <string name="info6"> Cookie-Präferenzen</string>
+    <string name="image_name">Image Name</string>
 
 </resources>

@@ -45,7 +45,7 @@ class MainActivity : AppCompatActivity() {
 
     // Load photos from the gallery
     private fun loadPhotos() {
-photos.add("content://media/external/images/media/1")
+ photos.add("content://media/external/images/media/1")
         photos.add("content://media/external/images/media/2")
         photos.add("content://media/external/images/media/3")
         photos.add("content://media/external/images/media/4")
@@ -91,7 +91,7 @@ photos.add("content://media/external/images/media/1")
         val dialogFragment = InfoDialogFragment.newInstance(message)
         dialogFragment.show(supportFragmentManager, "InfoDialog")
     }
-}
+
 
 
 
