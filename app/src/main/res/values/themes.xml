@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <style name="Base.Theme.SumsiMalwettbewerb" parent="Theme.Material3.DayNight.NoActionBar">
-        <item name="colorPrimary">#050B00</item>
+        <item name="colorPrimary">#3E413D</item>
         <item name="colorSecondaryContainer">@color/black</item>
     </style>
     <style name="Theme.SumsiMalwettbewerb" parent="Base.Theme.SumsiMalwettbewerb" />

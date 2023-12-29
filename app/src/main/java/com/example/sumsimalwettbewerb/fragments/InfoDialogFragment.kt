@@ -4,7 +4,11 @@ import android.app.AlertDialog
 import android.app.Dialog
 import android.os.Bundle
 import android.text.Html
+import android.view.View
+import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.DialogFragment
+import com.example.sumsimalwettbewerb.R
 
 
 class InfoDialogFragment : DialogFragment() {
@@ -17,6 +21,19 @@ class InfoDialogFragment : DialogFragment() {
             dialog,_ -> dialog.dismiss()
         }
         return builder.create()
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        view.findViewById<TextView>(R.id.textViewLink)?.setOnClickListener {
+           
+            val webViewFragment = ImprintFragment()
+            requireActivity().supportFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container,webViewFragment)
+                .addToBackStack(null)
+                .commit()
+                dismiss()
+        }
     }
     companion object {
         private const val MESSAGE_KEY = "message"

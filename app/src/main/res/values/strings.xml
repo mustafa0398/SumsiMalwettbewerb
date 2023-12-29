@@ -1,20 +1,20 @@
 <resources>
-    <string name="app_name">SumsiMalwettbewerb</string>
-    <string name="bank_logo">Bank-Logo</string>
-    <string name="sumsi_logo">Sumsi-Logo</string>
-    <string name="welcome_message"><b>Herzlich Willkommen beim grossen <font color="#880000">SUMSI</font> Malwettbewerb!</b></string>
-    <string name="sumsi_welcome_message"><b>Liebe Kinder, liebe Eltern!</b>
+    <string name="app_name" translatable="false">SumsiMalwettbewerb</string>
+    <string name="bank_logo" translatable="false">Bank-Logo</string>
+    <string name="sumsi_logo" translatable="false">Sumsi-Logo</string>
+    <string name="welcome_message" translatable="false"><b>Herzlich Willkommen beim grossen <font color="#880000">SUMSI</font> Malwettbewerb!</b></string>
+    <string name="sumsi_welcome_message" translatable="false"><b>Liebe Kinder, liebe Eltern!</b>
          Wie jedes Jahr gibt es auch heuer unseren traditionellen Sumsi Malwettbewerb.
          Wieder digital, wieder mit Voting und großer Online-Galerie.
          Jedes Elternteil, das bis zum <b>Invalid Date</b>  die Zeichnung seines Kindes mithilfe des nachstehenden Kontaktformulares hochlädt und einreicht, wird anschließend in der großen Sumsi Galerie auf www.raiffeisen-sumsi.at veröffentlicht.<br />
          Ich freue mich auf viele bunte Zeichnungen und ein spannendes Voting!
          <b>EURE RAIFFEISEN </b><b><i><font color="#880000">SUMSI</font></i></b>
     </string>
-    <string name="home_icon">Home</string>
-    <string name="upload_pictures">Upload pictures</string>
-    <string name="all_pictures">Photo Library</string>
-    <string name="rated_pictures">Rated pictures</string>
-    <string name="showPrivacyDetails">
+    <string name="home_icon" translatable="false">Home</string>
+    <string name="upload_pictures" translatable="false">Upload pictures</string>
+    <string name="all_pictures" translatable="false">Photo Library</string>
+    <string name="rated_pictures" translatable="false">Rated pictures</string>
+    <string name="showPrivacyDetails" translatable="false">
         <![CDATA[
         <strong>Datenschutzhinweise lt. DSGVO</strong><br>
         <strong>Datenschutzhinweise gem. Art. 13 DSGVO für den Sumsi Malwettbewerb</strong><br>
@@ -52,7 +52,7 @@
         <br>Stand: Oktober 2020
 ]]>
 </string>
-    <string name="showTermsAndCondition">
+    <string name="showTermsAndCondition" translatable="false">
         <![CDATA[
         <strong>Teilnahmebedingungen für den Sumsi Malwettbewerb</strong><br>
         <br>Jeder Elternteil, der vom 19. Oktober bis 5. November 2021 eine Zeichnung seines Kindes (das das 14. Lebensjahr noch nicht vollendet hat) über das vorliegende Kontaktformular einreicht, hat die Chance auf den Hauptgewinn und auf weitere tolle Preise. Alle eingereichten Zeichnungen werden in der großen Sumsi Galerie auf <strong>www.raiffeisen-sumsi.at </strong>veröffentlicht.
@@ -69,7 +69,7 @@
           <br> *  Der Veranstalter behält sich das Recht vor, den Malwettbewerb bzw. die Verlosung jederzeit aus wichtigem Grund ohne Vorankündigung zu beenden oder zu unterbrechen. Dies gilt unter anderem, wenn der planmäßige Ablauf des Malwettbewerbs bzw. die Verlosung gestört oder verhindert werden würde. Dem/der TeilnehmerIn erwachsen daraus keinerlei Rechte.<br>
 ]]>
 </string>
-    <string name="showCookiesPreferences">
+    <string name="showCookiesPreferences" translatable="false">
         <![CDATA[
         <strong>Cookie Richtlinien</strong><br>
         <br>Wir nehmen den Schutz Ihrer persönlichen Daten sehr ernst. Wir behandeln Ihre personenbezogenen Daten vertraulich und entsprechend der gesetzlichen Vorschriften. In dieser Datenschutzerklärung informieren wir Sie über die Datenverarbeitung im Rahmen unserer Website.<br>
@@ -94,11 +94,14 @@
 
          ]]>
     </string>
-    <string name="info1"> Datenschutz</string>
-    <string name="info2"> Teilnahmebedingungen</string>
-    <string name="info3"> Impressum</string>
-    <string name="info4"> Disclaimer</string>
-    <string name="info5"> AGB</string>
-    <string name="info6"> Cookie-Präferenzen</string>
+    <string name="showImprint" translatable="false">https://www.raiffeisen.at/ktn/rlb/de/meine-bank/raiffeisen-bankengruppe/impressum.html</string>
+    <string name="showAGB" translatable="false">https://www.raiffeisen.at/ktn/rlb/de/meine-bank/raiffeisen-bankengruppe/agb.html</string>
+    <string name="showDisclaimer" translatable="false">https://www.raiffeisen.at/ktn/rlb/de/meine-bank/raiffeisen-bankengruppe/disclaimer.html</string>
+    <string name="info1" translatable="false"> Datenschutz</string>
+    <string name="info2" translatable="false"> Teilnahmebedingungen</string>
+    <string name="info3" translatable="false"> Impressum</string>
+    <string name="info4" translatable="false"> Disclaimer</string>
+    <string name="info5" translatable="false"> AGB</string>
+    <string name="info6" translatable="false"> Cookie-Präferenzen</string>
 
 </resources>

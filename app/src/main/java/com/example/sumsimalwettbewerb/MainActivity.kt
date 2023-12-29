@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.widget.Toolbar
+import com.example.sumsimalwettbewerb.fragments.DisclaimerFragment
 import com.example.sumsimalwettbewerb.fragments.InfoDialogFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
@@ -23,23 +24,41 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-        fun showPrivacyDetails(view: View) {
+    fun showPrivacyDetails(view: View) {
 
-            val message = getString(R.string.showPrivacyDetails)
-            val dialogFragment = InfoDialogFragment.newInstance(message)
-            dialogFragment.show(supportFragmentManager, "InfoDialog")
-        }
+        val message = getString(R.string.showPrivacyDetails)
+        val dialogFragment = InfoDialogFragment.newInstance(message)
+        dialogFragment.show(supportFragmentManager, "InfoDialog")
+    }
+
     fun showTermsAndConditions(view: View) {
 
         val message = getString(R.string.showTermsAndCondition)
         val dialogFragment = InfoDialogFragment.newInstance(message)
         dialogFragment.show(supportFragmentManager, "InfoDialog")
     }
+
     fun showCookiePreferences(view: View) {
 
         val message = getString(R.string.showCookiesPreferences)
         val dialogFragment = InfoDialogFragment.newInstance(message)
         dialogFragment.show(supportFragmentManager, "InfoDialog")
+    }
+    fun showImprint(view: View) {
+        val message = getString(R.string.showImprint)
+        val dialogFragment = InfoDialogFragment.newInstance(message)
+        dialogFragment.show(supportFragmentManager, "InfoDialog")
+    }
+    fun showAGB(view: View) {
+        val message = getString(R.string.showAGB)
+        val dialogFragment = InfoDialogFragment.newInstance(message)
+        dialogFragment.show(supportFragmentManager, "InfoDialog")
+    }
+    fun showDisclaimer(view: View) {
+        val message = getString(R.string.showDisclaimer)
+        val dialogFragment = InfoDialogFragment.newInstance(message)
+        dialogFragment.show(supportFragmentManager, "InfoDialog")
+
     }
 }
 
