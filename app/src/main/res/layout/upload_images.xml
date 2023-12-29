@@ -42,21 +42,52 @@
 
 
         <EditText
-            android:id="@+id/etName"
+            android:id="@+id/etLegalGuardianFirstName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:minHeight="48dp"
-            android:hint="Name Erziehungsberechtigte/r *"
+            android:hint="Vorname Erziehungsberechtigte/r"
             android:inputType="textPersonName"
             android:padding="12dp"
             android:layout_marginTop="16dp" />
+
+        <EditText
+            android:id="@+id/etLegalGuardianLastName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:hint="Name Erziehungsberechtigte/r"
+            android:inputType="textPersonName"
+            android:padding="12dp"
+            android:layout_marginTop="16dp" />
+
+        <EditText
+            android:id="@+id/etChildFirstName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:hint="Vorname des Kindes"
+            android:inputType="textPersonName"
+            android:padding="12dp"
+            android:layout_marginTop="16dp" />
+
+        <EditText
+            android:id="@+id/etChildAge"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:hint="Alter des Kindes"
+            android:inputType="textPersonName"
+            android:padding="12dp"
+            android:layout_marginTop="16dp" />
+
 
         <EditText
             android:id="@+id/etEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:minHeight="48dp"
-            android:hint="E-Mail-Adresse zum Verständigen *"
+            android:hint="E-Mail-Adresse zum Verständigen"
             android:inputType="textEmailAddress"
             android:padding="12dp"/>
 
@@ -64,15 +95,34 @@
             android:id="@+id/btnUpload"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Bilder hochladen" />
+            android:text="Bild auswählen" />
+
+        <ImageView
+            android:id="@+id/selectedImage"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginTop="16dp"
+            android:visibility="gone"
+            android:scaleType="centerCrop" />
 
 
         <CheckBox
             android:id="@+id/cbTerms"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Zustimmung Urheberrechte *"/>
+            android:text="Zustimmung Datenschutzerklärung"/>
 
+        <CheckBox
+            android:id="@+id/cbParticipation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Zustimmung an der Teilnahme" />
+
+        <CheckBox
+            android:id="@+id/cbMailNotification"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Zustimmung zu Mail-Benachrichtigung" />
 
         <Button
             android:id="@+id/btnSubmit"
