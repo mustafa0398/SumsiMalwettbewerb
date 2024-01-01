@@ -1,4 +1,4 @@
-package com.example.sumsimalwettbewerb
+package com.example.sumsimalwettbewerb.Fragments
 
 import android.app.Activity
 import android.content.Intent
@@ -32,6 +32,9 @@ import android.Manifest
 import android.app.AlertDialog
 import android.provider.Settings
 import android.widget.ImageView
+import com.example.sumsimalwettbewerb.ApiService
+import com.example.sumsimalwettbewerb.R
+import com.example.sumsimalwettbewerb.SubmissionResponse
 
 class UploadFragment : Fragment() {
 

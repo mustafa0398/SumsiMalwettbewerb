@@ -5,13 +5,19 @@
 
     <fragment
         android:id="@+id/nav_home"
-        android:name="com.example.sumsimalwettbewerb.MainFragment"
+        android:name="com.example.sumsimalwettbewerb.Fragments.MainFragment"
         android:label="main_fragment"
         tools:layout="@layout/home_screen" />
 
     <fragment
         android:id="@+id/nav_upload"
-        android:name="com.example.sumsimalwettbewerb.UploadFragment"
+        android:name="com.example.sumsimalwettbewerb.Fragments.UploadFragment"
         android:label="upload_fragment"
         tools:layout="@layout/upload_images" />
+
+    <fragment
+        android:id="@+id/nav_photo_library"
+        android:name="com.example.sumsimalwettbewerb.Fragments.PhotoFragment"
+        android:label="photo_fragment"
+        tools:layout="@layout/fragment_photo_main" />
 </navigation>
