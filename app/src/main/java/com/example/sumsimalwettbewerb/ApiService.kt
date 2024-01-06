@@ -5,7 +5,6 @@ import retrofit2.Call
 import retrofit2.http.*
 
 interface ApiService {
-    // Bild-Upload-Endpunkt
     @Multipart
     @POST("api/v1/submissions")
     fun uploadImage(
@@ -20,4 +19,10 @@ interface ApiService {
         @Part approvalParticipation: MultipartBody.Part,
         @Part approvalMailNotification: MultipartBody.Part
     ): Call<SubmissionResponse>
+
+    @GET("api/v1/submissions")
+    fun getAllSubmissions(
+        @Header("Authorization") authHeader: String
+    ): Call<ApiResult>
+
 }
