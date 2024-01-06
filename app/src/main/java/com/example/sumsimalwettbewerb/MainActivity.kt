@@ -7,7 +7,7 @@ import androidx.appcompat.widget.Toolbar
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
-import com.example.sumsimalwettbewerb.Fragments.InfoDialogFragment
+import com.example.sumsimalwettbewerb.fragments.InfoDialogFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
