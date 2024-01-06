@@ -39,11 +39,12 @@ data class Submission(
     }
 }
 
-data class SubmissionResponse(
+data class Submissionresponse(
+
     val status: String,
     val status_code: Int,
     val message: String,
     val data: Any?
-)
 
+)
 

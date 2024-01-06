@@ -56,6 +56,3 @@ class PhotoAdapter(private val context: Context, private val photos: List<String
         val ratingBar: RatingBar = itemView.findViewById(R.id.photoRatingBar)
     }
 }
-
-
-
