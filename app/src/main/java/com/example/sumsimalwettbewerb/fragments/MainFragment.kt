@@ -1,4 +1,4 @@
-package com.example.sumsimalwettbewerb.Fragments
+package com.example.sumsimalwettbewerb.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater

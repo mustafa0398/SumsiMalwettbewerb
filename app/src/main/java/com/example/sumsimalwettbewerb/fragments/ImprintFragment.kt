@@ -10,18 +10,31 @@ import com.example.sumsimalwettbewerb.R
 
 class ImprintFragment : Fragment() {
 
+    private lateinit var webView: WebView
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_webview,container,false)
-}
-override fun onViewCreated(view: View,savedInstanceState: Bundle?) {
-     super.onViewCreated(view,savedInstanceState)
+        return inflater.inflate(R.layout.fragment_webview, container, false)
+    }
 
-    val webView: WebView = view.findViewById(R.id.webView)
-    val url = "https://www.raiffeisen.at/ktn/rlb/de/meine-bank/raiffeisen-bankengruppe/impressum.html"
-    webView.loadUrl(url)
-  }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        webView = view.findViewById(R.id.webView)
+        webView.settings.javaScriptEnabled = true
+        webView.loadUrl("https://www.raiffeisen.at/ktn/rlb/de/meine-bank/raiffeisen-bankengruppe/impressum.html")
+    }
+
+    fun canWebViewGoBack(): Boolean {
+        return webView.canGoBack()
+    }
+
+    fun goBackInWebView() {
+        if (webView.canGoBack()) {
+            webView.goBack()
+        }
+    }
 }

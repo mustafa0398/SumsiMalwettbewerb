@@ -1,4 +1,4 @@
-package com.example.sumsimalwettbewerb.Fragments
+package com.example.sumsimalwettbewerb.fragments
 
 import android.Manifest
 import android.content.pm.PackageManager

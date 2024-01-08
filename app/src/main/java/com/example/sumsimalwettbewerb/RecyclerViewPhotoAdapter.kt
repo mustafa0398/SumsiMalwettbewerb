@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.RatingBar
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 
@@ -31,8 +30,6 @@ class PhotoAdapter(private val context: Context, private val photos: List<String
             .centerInside()
             .into(holder.photoImageView)
 
-        // Static rating bar
-        holder.ratingBar.rating = 3.5f
 
         if (position < 4) {
             val photoId = context.resources.getIdentifier(photoNameOrUrl, "drawable", context.packageName)
@@ -53,6 +50,5 @@ class PhotoAdapter(private val context: Context, private val photos: List<String
 
     class PhotoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val photoImageView: ImageView = itemView.findViewById(R.id.iv_photoImageView)
-        val ratingBar: RatingBar = itemView.findViewById(R.id.photoRatingBar)
     }
 }

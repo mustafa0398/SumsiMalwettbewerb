@@ -1,4 +1,4 @@
-package com.example.sumsimalwettbewerb.Fragments
+package com.example.sumsimalwettbewerb.fragments
 
 import android.app.Activity
 import android.content.Intent
@@ -30,6 +30,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.io.File
 import android.Manifest
 import android.app.AlertDialog
+import android.os.Build
 import android.provider.Settings
 import android.widget.ImageView
 import com.example.sumsimalwettbewerb.ApiService
@@ -50,6 +51,13 @@ class UploadFragment : Fragment() {
     private lateinit var selectedImageView: ImageView
 
     private var selectedImageUri: Uri? = null
+
+
+    companion object {
+        private const val REQUEST_CODE_IMAGE_PICK = 1000
+        private const val REQUEST_PERMISSION_READ_EXTERNAL_STORAGE = 2000
+        private const val REQUEST_PERMISSION_READ_MEDIA_IMAGES = 3000
+    }
 
 
     override fun onCreateView(
@@ -105,15 +113,23 @@ class UploadFragment : Fragment() {
     }
 
     private fun openGalleryForImage() {
+        val permission: String
+        val requestCode: Int
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            permission = Manifest.permission.READ_MEDIA_IMAGES
+            requestCode = REQUEST_PERMISSION_READ_MEDIA_IMAGES
+        } else {
+            permission = Manifest.permission.READ_EXTERNAL_STORAGE
+            requestCode = REQUEST_PERMISSION_READ_EXTERNAL_STORAGE
+        }
+
         when {
-            ContextCompat.checkSelfPermission(
-                requireContext(),
-                Manifest.permission.READ_MEDIA_IMAGES
-            ) == PackageManager.PERMISSION_GRANTED -> {
+            ContextCompat.checkSelfPermission(requireContext(), permission) == PackageManager.PERMISSION_GRANTED -> {
                 startImagePicker()
             }
-            shouldShowRequestPermissionRationale(Manifest.permission.READ_MEDIA_IMAGES) -> {
-                showRationaleDialog()
+            shouldShowRequestPermissionRationale(permission) -> {
+                showRationaleDialog(permission, requestCode)
             }
             else -> {
                 showSettingsDialog()
@@ -139,16 +155,13 @@ class UploadFragment : Fragment() {
         }
     }
 
-    private fun showRationaleDialog() {
+    private fun showRationaleDialog(permission: String, requestCode: Int) {
         val alertDialog = AlertDialog.Builder(requireContext())
         alertDialog.apply {
             setTitle("Berechtigung erforderlich")
             setMessage("Diese App benötigt Zugriff auf Ihr Speichergerät, um Bilder hochzuladen. Bitte erlauben Sie den Zugriff.")
             setPositiveButton("Erlauben") { _, _ ->
-                requestPermissions(
-                    arrayOf(Manifest.permission.READ_MEDIA_IMAGES),
-                    REQUEST_PERMISSION_READ_MEDIA_IMAGES
-                )
+                requestPermissions(arrayOf(permission), requestCode)
             }
             setNegativeButton("Ablehnen") { dialog, _ ->
                 dialog.dismiss()
@@ -163,11 +176,6 @@ class UploadFragment : Fragment() {
         startActivityForResult(intent, REQUEST_CODE_IMAGE_PICK)
     }
 
-    companion object {
-        private const val REQUEST_CODE_IMAGE_PICK = 1000
-        private const val REQUEST_PERMISSION_READ_MEDIA_IMAGES = 2000
-    }
-
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == Activity.RESULT_OK && requestCode == REQUEST_CODE_IMAGE_PICK) {
@@ -178,7 +186,6 @@ class UploadFragment : Fragment() {
             }
         }
     }
-
     private fun uploadImageToServer(imageUri: Uri) {
         val file = File(getRealPathFromURI(imageUri))
         val requestFile = file.asRequestBody("image/*".toMediaTypeOrNull())
@@ -227,7 +234,7 @@ class UploadFragment : Fragment() {
 
         val service = retrofit.create(ApiService::class.java)
         val call = service.uploadImage(
-            "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiOGMxY2RmMTJlMGExMzJkYmYxNGZkZDQ0NjI1ZTA3ODFmZjA5MzkwNjZkODU1YzMyZmZhY2FhZDIxODU3ZDM0NTBjNThkZWQ4MmEyNDM2N2EiLCJpYXQiOjE3MDM2MTAwNzQuNzM0Mzk2LCJuYmYiOjE3MDM2MTAwNzQuNzM0Mzk5LCJleHAiOjE3MzUyMzI0NzQuNzI3MzEzLCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.iJ8zGPtlc78E7c15hTFXpwyk8XTj5qcNcEo08H88lsZ8jjeO3f5W0ux4tEYhPOJ5bhkuzKBfTgAjf2fS0vu39rqde-wWiCFcZ-B778RnFxAmFgVf_6FICw33_G4lCUdiTPjRBBRQWtPV78X5KvJMS3SIcPwW6TC9suJF5D49Zu8OtOPENoH4Off_pWTF3p0n8czoLjIf0V4fcFW8fivdq5qhEVHSflW7H5x-3DFnjnueN81CTXgHs2ZlVzgvkhxxlpgz7cNduzj9oCCvMvdNUXI2PWYMzyL8kUwf8BJNEs47EWg2BrVS4bi_rbBzIHDwPGbAy6nsql6QxtzcJW6QgK-tzK7UHjEPNPrAH5Hpj1Ow--IZ4votVFkT8PW2BwDsGBlqmHqIpONb4O7hCMae7zB2TIgLXvCglDr5AzVNmFN9K1XGM-uHBw1CCWmoYc_XfyLi3fcOwEnzGAsfAyv5XbRgHoYg4djbUO7ZiFuM9ixU7HyJoWhBU9PadHm9YEnqLeWOr3BC_VrSLtG6-eerre20WEBZYPMAoSL8psCFhDrySn8eTARKvY2PagKNsYTJCYm9Y3pt2WVlpwA-yLC5rUbOqI9CJLjtjBZj5v6wMjPyyb0aXXPPPHIfLoJGRR_9GBiTgyCDeGaf8TO5yK1OspgCY1YAUQVh_DEr3eIzgWc",
+            "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiOGMxY2RmMTJlMGExMzJkYmYxNGZkZDQ0NjI1ZTA3ODFmZjA5MzkwNjZkODU1YzMyZmZhY2FhZDIxODU3ZDM0NTBjNThkZWQ4MmEyNDM2N2EiLCJpYXQiOjE3MDM2MTAwNzQuNzM0Mzk2LCJuYmYiOjE3MDM2MTAwNzQuNzM0Mzk5LCJleHAiOjE3MzUyMzI0NzQuNzI3MzEzLCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.iJ8zGPtlc78E7c15hTFXpwyk8XTj5qcNcEo08H88lsZ8jjeO3f5W0ux4tEYhPOJ5bhkuzKBfTgAjf2fS0vu39rqde-wWiCFcZ-B778RnFxAmFgVf_6FICw33_G4lCUdiTPjRBBRQWtPV78X5KvJMS3SIcPwW6TC9suJF5D49Zu8OtOPENoH4Off_pWTF3p0n8czoLjIf0V4fcFW8fivdq5qhEVHSflW7H5x-3DFnjnueN81CTXgHs2ZlVzgvkhxxlpgz7cNduzj9oCCvMvdNUXI2PWYMzyL8kUwf8BJNEs47EWg2BrVS4bi_rbBzIHDwPGbAy6nsql6QxtzcJW6QgK-tzK7UHjEPNPrAH5Hpj1Ow--IZ4votVFkT8PW2BwDsGBlqmHqIpONb4O7hCMae7zB2TIgLXvCglDr5AzVNmFN9K1XGM-uHBw1CCWmoYc_XfyLi3fcOwEnzGAsfAyv5XbRgHoYg4djbUO7ZiFuM9ixU7HyJoWhBU9PadHm9YEnqLeWOr3BC_VrSLtG6-eerre20WEBZYPMAoSL8psCFhDrySn8eTARKvY2PagKNsYTJCYm9Y3pt2WVlpwA-yLC5rUbOqI9CJLjtjBZj5v6wMjPyyb0aXXPPPHIfLoJGRR_9GBiTgyCDeGaf8TO5yK1OspgCY1YAUQVh_DEr3eIzgWc", // Ersetze YOUR_AUTH_KEY mit deinem tatsächlichen Token
             imagePart,
             legalGuardianFirstName,
             legalGuardianLastName,
@@ -261,6 +268,7 @@ class UploadFragment : Fragment() {
         })
     }
 
+
     private fun getRealPathFromURI(contentUri: Uri): String {
         val cursor = context?.contentResolver?.query(contentUri, null, null, null, null)
         cursor?.moveToFirst()
@@ -276,13 +284,10 @@ class UploadFragment : Fragment() {
         grantResults: IntArray
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if (requestCode == REQUEST_PERMISSION_READ_MEDIA_IMAGES) {
-            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                startImagePicker()
-            } else {
-                Toast.makeText(context, "Berechtigung verweigert", Toast.LENGTH_SHORT).show()
-            }
+        if ((requestCode == REQUEST_PERMISSION_READ_EXTERNAL_STORAGE || requestCode == REQUEST_PERMISSION_READ_MEDIA_IMAGES) && grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            startImagePicker()
+        } else {
+            Toast.makeText(context, "Berechtigung verweigert", Toast.LENGTH_SHORT).show()
         }
     }
-
 }

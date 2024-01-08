@@ -22,6 +22,11 @@
         app:defaultNavHost="true"
         app:navGraph="@navigation/navigation" />
 
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
     <!-- NavigationBar -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_nav_view"

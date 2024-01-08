@@ -1,4 +1,4 @@
-package com.example.sumsimalwettbewerb.Fragments
+package com.example.sumsimalwettbewerb.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.example.sumsimalwettbewerb.R
-import com.example.sumsimalwettbewerb.fragments.InfoDialogFragment
 
 
 class PrivacyFragment : Fragment() {
