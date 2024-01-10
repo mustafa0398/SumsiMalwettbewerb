@@ -129,5 +129,6 @@
     <string name="info4" translatable="false"> Disclaimer</string>
     <string name="info5" translatable="false"> AGB</string>
     <string name="info6" translatable="false"> Cookie-Präferenzen</string>
+    <string name="vote">0</string>
 
 </resources>

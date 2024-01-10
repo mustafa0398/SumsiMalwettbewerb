@@ -56,21 +56,21 @@ class MainActivity : AppCompatActivity(), InfoDialogFragment.InfoDialogListener 
     fun showAGB(view: View) {
         val message = getString(R.string.showAGB)
         val dialogFragment = InfoDialogFragment.newInstance(message)
-        dialogFragment.listener = this  // Set MainActivity as Listener
+        dialogFragment.listener = this
         dialogFragment.show(supportFragmentManager, "AGBDialog")
     }
 
     fun showImprint(view: View) {
         val message = getString(R.string.showImprint)
         val dialogFragment = InfoDialogFragment.newInstance(message)
-        dialogFragment.listener = this  // Set MainActivity as Listener
+        dialogFragment.listener = this
         dialogFragment.show(supportFragmentManager, "ImprintDialog")
     }
 
     fun showDisclaimer(view: View) {
         val message = getString(R.string.showDisclaimer)
         val dialogFragment = InfoDialogFragment.newInstance(message)
-        dialogFragment.listener = this  // Set MainActivity as Listener
+        dialogFragment.listener = this
         dialogFragment.show(supportFragmentManager, "DisclaimerDialog")
     }
     override fun onDialogPositiveClick(tag: String) {
@@ -97,7 +97,6 @@ class MainActivity : AppCompatActivity(), InfoDialogFragment.InfoDialogListener 
                     .commit()
             }
             else -> {
-                // Handle other cases or throw an error
             }
         }
     }
@@ -123,9 +122,7 @@ class MainActivity : AppCompatActivity(), InfoDialogFragment.InfoDialogListener 
                     return
                 }
             }
-            // ... Fügen Sie zusätzliche Fälle für andere Fragmente hinzu, die WebViews enthalten ...
         }
-        // Wenn kein WebView zurückgehen kann oder das aktuelle Fragment kein WebView enthält, führen Sie die normale Back-Pressed-Aktion aus
         super.onBackPressed()
     }
 }

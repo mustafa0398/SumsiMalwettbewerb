@@ -32,11 +32,16 @@ data class Submission(
     val created_at: String?,
     val updated_at: String?,
     val image: Image?,
-    val votings: List<Voting> = emptyList()
+    val votings: List<Voting>
 ) {
-    class Voting {
+    data class Voting(
+        val id: String,
+        val email: String,
+        val submission_id: String,
+        val created_at: String?,
+        val updated_at: String?
+    )
 
-    }
 }
 
 data class SubmissionResponse(

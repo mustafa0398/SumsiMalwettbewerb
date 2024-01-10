@@ -25,4 +25,19 @@ interface ApiService {
         @Header("Authorization") authHeader: String
     ): Call<ApiResult>
 
+
+    @POST("api/v1/submissions/{submissionId}/votings")
+    fun storeVote(
+        @Header("Authorization") authHeader: String,
+        @Path("submissionId") submissionId: String,
+        @Body voteBody: VoteBody
+    ): Call<VoteResponse>
+
+    @GET("api/v1/submissions/{submissionId}/votes/count")
+    fun countVotes(
+        @Header("Authorization") authHeader: String,
+        @Path("submissionId") submissionId: String
+    ): Call<VoteCountResponse>
+
+
 }
