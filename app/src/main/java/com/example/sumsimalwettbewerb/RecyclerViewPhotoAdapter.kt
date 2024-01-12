@@ -21,10 +21,6 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import android.net.ConnectivityManager
-import okhttp3.ResponseBody
-import org.json.JSONException
-import org.json.JSONObject
-import retrofit2.Converter
 
 class PhotoAdapter(private val context: Context, private var photos: MutableList<Photo>) :
     RecyclerView.Adapter<PhotoAdapter.PhotoViewHolder>() {
@@ -33,6 +29,7 @@ class PhotoAdapter(private val context: Context, private var photos: MutableList
         val photoImageView: ImageView = itemView.findViewById(R.id.iv_photoImageView)
         val ivHeart: ImageView = itemView.findViewById(R.id.iv_heart)
         val tvVoteCount: TextView = itemView.findViewById(R.id.tv_vote_count)
+        val tvChildDetails: TextView = itemView.findViewById(R.id.tvChildDetails)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PhotoViewHolder {
@@ -70,6 +67,10 @@ class PhotoAdapter(private val context: Context, private var photos: MutableList
                 Toast.makeText(context, "Sie haben dieses Bild bereits bewertet.", Toast.LENGTH_SHORT).show()
             }
         }
+
+        val childDetails = "${photo.childName}, ${photo.childAge}"
+        holder.tvChildDetails.text = childDetails
+
 
     }
 
@@ -166,7 +167,6 @@ class PhotoAdapter(private val context: Context, private var photos: MutableList
         })
     }
 
-
     private fun updateVoteCount(submissionId: String) {
         val retrofit = Retrofit.Builder()
             .baseUrl("https://sumsi.dev.webundsoehne.com/")
@@ -206,7 +206,6 @@ class PhotoAdapter(private val context: Context, private var photos: MutableList
             }
         })
     }
-
 
     private fun updateVotesDisplay(submissionId: String, newVoteCount: Int) {
         val photoIndex = photos.indexOfFirst { it.id == submissionId }

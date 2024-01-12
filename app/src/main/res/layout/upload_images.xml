@@ -18,8 +18,10 @@
             android:layout_height="wrap_content"
             android:text="@string/contest_heading"
             android:textColor="#0B0B0B"
+            android:fontFamily="@font/swz721ml"
+            android:textSize="25sp"
             android:gravity="center"
-            android:padding="8dp"
+            android:padding="20dp"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textStyle="bold"
             android:textIsSelectable="true"/>
@@ -29,8 +31,9 @@
             android:layout_height="wrap_content"
             android:text="@string/join_win_heading"
             android:textColor="#0B0B0B"
+            android:textSize="25sp"
             android:gravity="center"
-            android:padding="8dp"
+            android:padding="5dp"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"/>
 
         <WebView
@@ -38,6 +41,7 @@
             android:background="#FBF315"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:gravity ="center"
             android:layout_marginTop="8dp"/>
 
 
