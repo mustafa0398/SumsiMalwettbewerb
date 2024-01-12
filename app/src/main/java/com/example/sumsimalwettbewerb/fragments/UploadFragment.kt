@@ -34,6 +34,7 @@ import android.os.Build
 import android.provider.Settings
 import android.widget.ImageView
 import com.example.sumsimalwettbewerb.ApiService
+import com.example.sumsimalwettbewerb.PhotoAdapter
 import com.example.sumsimalwettbewerb.R
 import com.example.sumsimalwettbewerb.SubmissionResponse
 
@@ -294,7 +295,12 @@ class UploadFragment : Fragment() {
             }
 
             override fun onFailure(call: Call<SubmissionResponse>, t: Throwable) {
-                Toast.makeText(context, "Pro E-Mail Adresse darf immer nur ein Bild hochgeladen werden.", Toast.LENGTH_LONG).show()
+                val context = requireContext()
+                if (PhotoAdapter.isOnline(context)) {
+                    Toast.makeText(context, "Pro E-Mail Adresse darf immer nur ein Bild hochgeladen werden.", Toast.LENGTH_LONG).show()
+                } else {
+                    Toast.makeText(context, "Sie sind offline. Bitte stellen Sie eine Internetverbindung her.", Toast.LENGTH_LONG).show()
+                }
             }
         })
     }
