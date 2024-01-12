@@ -21,6 +21,10 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import android.net.ConnectivityManager
+import okhttp3.ResponseBody
+import org.json.JSONException
+import org.json.JSONObject
+import retrofit2.Converter
 
 class PhotoAdapter(private val context: Context, private var photos: MutableList<Photo>) :
     RecyclerView.Adapter<PhotoAdapter.PhotoViewHolder>() {
@@ -132,30 +136,36 @@ class PhotoAdapter(private val context: Context, private var photos: MutableList
                 "XKrgyNf9k", submissionId, voteBody).enqueue(object : Callback<VoteResponse> {
             override fun onResponse(call: Call<VoteResponse>, response: Response<VoteResponse>) {
                 if (response.isSuccessful) {
-                    val voteCount = response.body()?.data?.votes ?: 0
+                    val responseBody = response.body()
 
-                    updateVotesDisplay(voteCount)
-
-                    Toast.makeText(context, "Ihre Stimme wurde erfolgreich gespeichert", Toast.LENGTH_SHORT).show()
-                } else {
-                    Log.e("VoteStoreError", "Error while saving the vote. Code: ${response.code()}, Message: ${response.message()}")
-                    try {
-                        val errorBody = response.errorBody()?.string()
-                        Log.e("VoteStoreError", "Error body: $errorBody")
-                    } catch (e: Exception) {
-                        Log.e("VoteStoreError", "Error parsing error body", e)
+                    if (responseBody?.status == "error") {
+                        val errorMessage = when (responseBody.message) {
+                            "Only 5 votes per user allowed." -> "Pro E-Mail Adresse kann man nur 5 Stimmen vergeben"
+                            "Only 1 vote per image allowed." -> "Pro Bild kann nur eine Stimme abgegeben werden"
+                            else -> "Ein unbekannter Fehler ist aufgetreten"
+                        }
+                        Toast.makeText(context, errorMessage, Toast.LENGTH_SHORT).show()
+                    } else {
+                        val voteCount = responseBody?.data?.votes ?: 0
+                        updateVotesDisplay(voteCount)
+                        Toast.makeText(context, "Ihre Stimme wurde erfolgreich gespeichert", Toast.LENGTH_SHORT).show()
+                        updateVoteCount(submissionId)
                     }
-                    Toast.makeText(context, "Error while saving the vote", Toast.LENGTH_SHORT).show()
+                } else {
+                    val errorMessage = when (response.code()) {
+                        500 -> "Ein Fehler ist aufgetreten"
+                        else -> "Ein Fehler ist aufgetreten: HTTP-Status ${response.code()}"
+                    }
+                    Toast.makeText(context, errorMessage, Toast.LENGTH_SHORT).show()
                 }
-                updateVoteCount(submissionId)
             }
 
             override fun onFailure(call: Call<VoteResponse>, t: Throwable) {
-                Log.e("VoteStoreFailure", "Network error", t)
-                Toast.makeText(context, "Network error: ${t.message}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "Netzwerkfehler: ${t.message}", Toast.LENGTH_SHORT).show()
             }
         })
     }
+
 
     private fun updateVoteCount(submissionId: String) {
         val retrofit = Retrofit.Builder()
@@ -196,6 +206,7 @@ class PhotoAdapter(private val context: Context, private var photos: MutableList
             }
         })
     }
+
 
     private fun updateVotesDisplay(submissionId: String, newVoteCount: Int) {
         val photoIndex = photos.indexOfFirst { it.id == submissionId }
