@@ -72,7 +72,7 @@ class PhotoAdapter(private val context: Context, private var photos: MutableList
             if (!photo.hasVoted) {
                 showEmailDialog(photo.id, position)
             } else {
-                Toast.makeText(context, "Sie haben dieses Bild bereits bewertet.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, (R.string.toast_Sie_haben), Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -99,20 +99,20 @@ class PhotoAdapter(private val context: Context, private var photos: MutableList
 
         AlertDialog.Builder(context)
             .setView(dialogView)
-            .setTitle("Bewerten Sie dieses Foto")
-            .setMessage("Geben Sie Ihre E-Mail-Adresse ein, um abzustimmen:")
-            .setPositiveButton("Abstimmen") { dialog, _ ->
+            .setTitle(R.string.setTitel_Bewerten)
+            .setMessage(R.string.mass_Geben_Sie_Ihre)
+            .setPositiveButton((R.string.butto_Abstimmen)) { dialog, _ ->
                 val email = emailEditText.text.toString()
                 if (email.isNotEmpty() && Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
                     storeVote(photoId, email) { newVoteCount ->
                         updateVotesDisplay(newVoteCount)
                     }
                 } else {
-                    Toast.makeText(context, "Bitte geben Sie eine gültige E-Mail-Adresse ein", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, (R.string.mass_Bitte), Toast.LENGTH_SHORT).show()
                 }
                 dialog.dismiss()
             }
-            .setNegativeButton("Abbrechen", null)
+            .setNegativeButton((R.string.neBu_Abbrechen), null)
             .show()
     }
 
@@ -157,15 +157,15 @@ class PhotoAdapter(private val context: Context, private var photos: MutableList
                     } else {
                         val voteCount = responseBody?.data?.votes ?: 0
                         updateVotesDisplay(voteCount)
-                        Toast.makeText(context, "Ihre Stimme wurde erfolgreich gespeichert", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, (R.string.toast_3), Toast.LENGTH_SHORT).show()
                         updateVoteCount(submissionId)
                     }
                 } else {
                     val errorMessage = when (response.code()) {
-                        500 -> "Ein Fehler ist aufgetreten"
-                        else -> "Ein Fehler ist aufgetreten: HTTP-Status ${response.code()}"
+                        500 -> (R.string.Ein_Fehler_ist)
+                        else -> context.getString(R.string.EinFehler_ist)+ "${response.code()}"
                     }
-                    Toast.makeText(context, errorMessage, Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, R.string.errorMessage, Toast.LENGTH_SHORT).show()
                 }
             }
 

@@ -1,5 +1,165 @@
 <?xml version="1.0" encoding="utf-8"?>
-    <resources>
+<resources>
+    <string name="app_name">Sumsi Painting Competition</string>
+    <string name="sumsi_welcome_message"><b>Dear children, dear parents!</b> Like every year, this year there is also our traditional Sumsi painting competition. Again digital, again with voting and a large online gallery. Every parent who uploads and submits their child\'s drawing using the contact form below by the <b>Invalid Date</b> will then be published in the large Sumsi gallery on www.raiffeisen-sumsi.at.<br /> I am happy I\'m looking forward to lots of colorful drawings and exciting voting! <b>YOUR RAIFFEISEN </b><b><i><font color="#880000">SUMSI</font></i></b></string>
+    <string name="home_icon">Home</string>
+    <string name="upload_pictures">Upload pictures</string>
+    <string name="all_pictures">Photo Library</string>
+    <string name="welcome_message"><b>Welcome to the Big <font color="#880000">SUMSI</font> Painting Competition!</b></string>
+    <string name="contest_heading2">Sumsi painting competition!.</string>
+    <string name="hint_name">Name of legal Guardian</string>
+    <string name="hint_email">Email address for Communication</string>
+    <string name="upload">Upload Image</string>
+    <string name="terms">Consent to data protection</string>
+    <string name="vote">0</string>
+    <string name="childdetails">Name,Age</string>
+    <string name="info1">Data Protection</string>
+    <string name="info2">Conditions of Participation</string>
+    <string name="datenschutzinformationen">Privacy Information</string>
+    <string name="teilnahmebedingungen">Conditions of Participation</string>
+    <string name="impressum">imprint</string>
+    <string name="vorname_erziehungsberechtigte_r">First Name of legal Guardian</string>
+    <string name="name_erziehungsberechtigte_r">Name of legal Guardian</string>
+    <string name="vorname_des_kindes">First Name of the Child</string>
+    <string name="alter_des_kindes">The Age of the Child</string>
+    <string name="e_mail_adresse_zum_verst_ndigen">Email Address for Communication</string>
+    <string name="bild_ausw_hlen">Choose a Picture</string>
+    <string name="zustimmung_datenschutzerkl_rung">Consent to privacy policy</string>
+    <string name="zustimmung_an_der_teilnahme">Participation Agreement</string>
+    <string name="zustimmung_zu_mail_benachrichtigung">Consent to email notification</string>
+    <string name="absenden">SUBMIT</string>
+    <string name="cookies_pr_ferenzen">Cookies preferences</string>
+    <string name="join_win_heading">Join &amp; Win!</string>
+    <string name="info6">Cookie preferences</string>
+    <string name="contest_heading"><b>The Best Painting Competition Ever.<br>And this is How it Works!</br></b></string>
+
+    <string name="information_contest" translatable="true">
+    <![CDATA[
+             <ul>
+                 <li>Drawing &amp; paint</li><br />
+                 <li> Digitize (photo or scan)</li><br />
+                 <li> Upload and submit by <b> January 15, 2024</b></li><br />
+                 <li>The exhibition in the Sumsi Gallery runs<b>from January 18, 2024.</b></li><br />
+                 <li> If you are lucky, win one of the <b>10 great prizes</b>.</li><br />
+                 <li>The parents of the winners will be notified by email.</li><br />
+                 <li> Legal recourse is excluded.</li><br />
+             </ul>
+             <p style ="text-align:center;"><b>I am looking forward to lots of colorful drawings. Join in and send me your dreams!</b></p>
+
+             <p style="text-align:center;">Your Raiffeisen <font color="#880000"><b>SUMSI</b></font></p>
+         ]]>
+</string>
+
+    <string name="showCookiesPreferences" translatable="true">
+    <![CDATA[
+        <strong>Cookie policy</strong><br>
+        <br>We take the protection of your personal data very seriously. We treat your personal data confidentially and in accordance with legal regulations. In this data protection declaration we inform you about data processing on our website.<br>
+         It is generally possible to use our website without providing your personal data. As far as personal data on our pages (e.g. name, address or email addresses) If collected, this is always done to enable the use of the website or on a voluntary basis. For example, the processing of the IP address is due to technical reasons and cannot be prevented.<br>
+        <br><strong>DATA PROTECTION PERSON</strong><br>
+         <br>This website is operated by Raiffeisenlandesbank Kärnten- Computing Center and Audit Association, registered cooperative with limited liability, Raiffeisenplatz 1, 9020 Klagenfurt am Wörthersee.
+         Alternatively, you can also contact our data protection officer:
+         <strong>datenschutz@rbgk.raiffeisen.at</strong>
+         Raiffeisenplatz 1 | 9020 Klagenfurt am Wörthersee<br>
+         <strong>T +43 463 993 00-12201</strong><br>
+         <br><strong>COOKIES</strong><br>
+         <br>Our website uses so-called cookies. Cookies are text files that are stored on your device when you visit the website.
+         We use cookies to carry out anonymous analyzes of the use of the website. We also use cookies to be able to offer you additional functions on the website, to make interactions with the website easier and to ensure error-free use (e.g. to make navigation on a website easier or to save your preferences and settings for the next visit save).<br>
+         <br><strong>Required cookies:</strong><br>
+          <br>We process cookies that are necessary for the basic functions of the website due to our legitimate interest in being able to present our content to you or due to contractual or legal obligations to provide you with information on our website.<br>
+          <br><strong>Functional cookies:</strong><br>
+          <br>We use cookies that enable us to analyze website usage based on your consent when using our website.<br>
+         <br><strong>Marketing cookies:</strong><br>
+          <br>We also use cookies that enable us to provide you with advertising tailored to your interests based on your consent when using our website.<br>
+         Some cookies remain stored on your device until you delete them. They enable us to recognize your browser the next time you visit. Most of the cookies we use are deleted at the end of your visit to our website (so-called session cookies).
+         Cookies can be blocked, disabled or deleted. There are a variety of tools available to do this (including browser controls and settings). You can find information about this in the help section of the web browser you use. If you deactivate all of the cookies we use, the display of the website may, for example, be restricted.
+
+          ]]>
+</string>
+    <string name="showPrivacyDetails">
+    <![CDATA[
+        <strong>Data protection information according to GDPR</strong><br>
+        <strong>Data protection information in accordance with Art. 13 GDPR for the Sumsi painting competition</strong><br>
+         <<br>We treat your personal data confidentially and in accordance with legal regulations. We hereby inform you about the processing of your personal data and that of your child and the data protection claims and rights to which you are entitled.
+         The content and scope of data processing depends largely on the information you provide via the online contact form as part of the painting competition.<br>
+         <br><strong>Who is responsible for data processing and who can you contact?</strong><br>
+         <br>The person responsible for data processing is
+         Raiffeisenlandesbank Kärnten - data center and auditing association, registered cooperative with limited liability
+         Raiffeisenplatz 1 I 9020 Klagenfurt am Wörthersee
+         <br><strong>T + 43 406 993 00</strong>
+        <br><strong> E info@rbgk.raiffeisen.at</strong>
+
+        <br>Alternativ können Sie sich auch gerne an den Datenschutzbeauftragten wenden:
+        Raiffeisenplatz 1 I 9020 Klagenfurt am Wörthersee
+        <br><strong> T +43 463 993 00 – 12201</strong><br>
+
+        <br><strong>What personal data is processed as part of the painting competition?</strong><br>
+        <br>We process the personal data that we received from you as part of the painting competition via the online contact form.
+        Personal data includes your personal details and contact details (first and last name, email address) as well as those of your child (first name and age).
+         For what purpose are your and your child’s personal data processed?
+        The personal data you provide and that of your child to participate in the painting competition will be used by Raiffeisen Landesbank exclusively to carry out and process the painting competition.
+         Your child first name and your email address will be required to determine and notify the winners and will only be processed for this purpose.<br>
+
+        <br><strong>Who receives the personal data you provide?</strong><br>
+         <br>Your personal data and that of your child will only be sent to those employees of Raiffeisen Landesbank Kärnten who are running the painting competition in order to be able to determine and notify the winners.
+         Your data will not be passed on to third parties in any other way.<br>
+
+        <br><strong>How long will the personal data you provide be stored?</strong><br>
+         <br>Your personal data and that of your child will be deleted after the painting competition has been completed and the winners have been identified and notified. Your data and that of your child will be deleted no later than November 30, 2020.<br>
+
+        <br><strong>What data protection rights do you have?</strong><br>
+        <br>You have the right to information, correction, deletion or restriction of the processing of your and your child stored data, a right to data portability, the right to object to processing and a right to revocation in accordance with the requirements of data protection law.
+        You can send relevant requests to <strong>datenschutz@rbgk.raiffeisen.at</strong>.
+         This does not affect your right to complain to the responsible data protection authority by email to <strong>dsb@dsb.gv.at</strong> or by post to the Austrian Data Protection Authority, Barichgasse 40-42, 1030 Vienna.<br>
+         <br>As of: October 2020
+         ]]>
+    </string>
+
+    <string name="showTermsAndCondition">
+        <![CDATA[
+        <strong>Conditions of participation for the Sumsi painting competition</strong><br>
+         <br>Every parent who submits a drawing of their child (who has not yet reached the age of 14) using this contact form from October 19th to November 5th, 2021 has the chance to win the main prize and other great prizes. All submitted drawings will be published in the large Sumsi gallery at www.raiffeisen-sumsi.at.
+         10 drawings will be drawn from all submitted drawings. Great prizes await these 10 winners.<br>
+         <br><strong>By participating in the Sumsi painting competition, participants declare that they agree to the following conditions of participation:</strong><br>
+           <br> * All natural persons are eligible to participate.<br>
+           <br> * Participation in the painting competition is free, voluntary and independent of banking transactions. The winners will be chosen at random. Legal recourse is excluded. Prizes cannot be redeemed for cash, transferred or exchanged.<br>
+           <br> * Participation via competition associations or automated services is not permitted. Only one participation is possible per person. If the participant wins, they can accept the non-cash prizes within 4 weeks of electronic notification, after which this claim and the prize expire.<br>
+           <br> * The organizer assumes no liability for any technical difficulties.
+           <br> * The participant declares that his/her submission to the painting competition (the drawing) does not violate the rights of third parties, in particular copyrights and personal rights. He/she expressly agrees to the publication of the drawing as part of the painting competition or on the organizers homepage<br>
+           <br> * If other people were involved in the creation of the drawing or third parties were granted exclusive rights to the submitted entry, they must agree to the submission and subsequent publication as part of the painting competition.<br>
+           <br> * The organizer reserves the right, in certain cases, to require participants to provide written proof that the above requirements have been met. If proof is not provided when requested, the participant may be excluded from participation by the organizer.<br>
+           <br> * The organizer reserves the right to exclude participants who violate the conditions of participation, criminal laws or other regulations or morality or who attempt to influence the painting competition in any way through technical manipulation. In the event of exclusion from the painting competition, the organizer is free to subsequently withdraw and reclaim the winnings.<br>
+           <br> * The organizer reserves the right to end or interrupt the painting competition or raffle at any time for good cause without prior notice. This applies, among other things, if the scheduled course of the painting competition or the raffle would be disrupted or prevented. This does not give the participant any rights.<br>
+     ]]>
+
+    </string>
+    <string name="toast">Please accept the terms of Use.</string>
+    <string name="toast2">Please select an image first.</string>
+    <string name="alertDialog_setTitle">Authorization required</string>
+    <string name="alertDialog_setNegativeButton">Refuse</string>
+    <string name="alertDialog_setPositiveButton">Open Settings</string>
+    <string name="alertDialog_RationaleDialog_setTitle">Authorization Required</string>
+    <string name="alertDialog_RationaleDialog_setPositiveButton">Allow</string>
+    <string name="alertDialog_RationaleDialog_setNegativeButton">Refuse</string>
+    <string name="alertDialog_RationaleDialog_setMessage">This app requires access to your storage device to upload images. Please allow access.</string>
+    <string name="alertDialog_setMessage">Permission to read external storage was denied. Please open Settings and grant permission manually."</string>
+    <string name="toast_Upload_erfolgreich">Upload Successful</string>
+    <string name="toast_Berechtigung_verweigert">Permission denied</string>
+    <string name="toas_Fehlerbeim_Upload">Error uploading</string>
+    <string name="e_mail_eingeben">Enter Your Email</string>
+    <string name="setTitel_Bewerten">Rate this Photo</string>
+    <string name="errorMessage">errorMessage</string>
+    <string name="mass_Bitte">Please Enter a valid email address</string>
+    <string name="mass_Geben_Sie_Ihre">Enter your Email Address to Vote</string>
+    <string name="toast_Sie_sind_offline">You are offline. Please establish an internet connection first</string>
+    <string name="toast_ProE_MailAdresse">Only one image may be uploaded per email address</string>
+    <string name="toast_Netzwerkfehler_oder_anderer_Fehler">Netzwerkfehler oder anderer Fehler</string>
+    <string name="sumsi_gallery"> <p style="text-align:center;"><b>Welcome to the large <font color="#880000"><b>SUMSI</b></font> Gallery</b></p></string>
+    <string name="toast_Sie_haben">You have Already Rated this Image.</string>
+    <string name="setTitel_Bewerten_Sie_dieses_Foto">Rate this photo</string>
+    <string name="butto_Abstimmen">Vote</string>
+    <string name="neBu_Abbrechen">Cancel</string>
+    <string name="toast_3">Your Voting has been successfully saved</string>
+    <string name="Ein_Fehler_ist">An Error has occurred</string>
+    <string name="EinFehler_ist">Ein Fehler ist aufgetreten: HTTP-Status %1$d</string>
 
 </resources>
-

@@ -29,6 +29,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.io.File
 import android.Manifest
+import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.os.Build
 import android.provider.Settings
@@ -97,7 +98,7 @@ class UploadFragment : Fragment() {
             if (cbTerms.isChecked) {
                 openGalleryForImage()
             } else {
-                Toast.makeText(context, "Bitte akzeptieren Sie die Nutzungsbedingungen.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, getString(R.string.toast), Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -105,7 +106,7 @@ class UploadFragment : Fragment() {
             selectedImageUri?.let { uri ->
                 uploadImageToServer(uri)
             } ?: run {
-                Toast.makeText(context, "Bitte wählen Sie zuerst ein Bild aus.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, getString(R.string.toast2), Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -139,15 +140,15 @@ class UploadFragment : Fragment() {
     private fun showSettingsDialog() {
         val alertDialog = AlertDialog.Builder(requireContext())
         alertDialog.apply {
-            setTitle("Berechtigung erforderlich")
-            setMessage("Die Berechtigung zum Lesen des externen Speichers wurde verweigert. Bitte öffnen Sie die Einstellungen und erteilen Sie die Berechtigung manuell.")
-            setPositiveButton("Einstellungen öffnen") { _, _ ->
+            setTitle((getString(R.string.alertDialog_setTitle)))
+            setMessage(getString(R.string.alertDialog_setMessage))
+            setPositiveButton(getString(R.string.alertDialog_setPositiveButton)) { _, _ ->
                 val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
                 val uri = Uri.fromParts("package", requireActivity().packageName, null)
                 intent.data = uri
                 startActivity(intent)
             }
-            setNegativeButton("Ablehnen") { dialog, _ ->
+            setNegativeButton(getString(R.string.alertDialog_RationaleDialog_setNegativeButton)) { dialog, _ ->
                 dialog.dismiss()
             }
             create().show()
@@ -157,12 +158,12 @@ class UploadFragment : Fragment() {
     private fun showRationaleDialog(permission: String, requestCode: Int) {
         val alertDialog = AlertDialog.Builder(requireContext())
         alertDialog.apply {
-            setTitle("Berechtigung erforderlich")
-            setMessage("Diese App benötigt Zugriff auf Ihr Speichergerät, um Bilder hochzuladen. Bitte erlauben Sie den Zugriff.")
-            setPositiveButton("Erlauben") { _, _ ->
+            setTitle(getString(R.string.alertDialog_RationaleDialog_setTitle))
+            setMessage(getString(R.string.alertDialog_RationaleDialog_setMessage))
+            setPositiveButton(getString(R.string.alertDialog_RationaleDialog_setPositiveButton)) { _, _ ->
                 requestPermissions(arrayOf(permission), requestCode)
             }
-            setNegativeButton("Ablehnen") { dialog, _ ->
+            setNegativeButton(getString(R.string.alertDialog_RationaleDialog_setNegativeButton)) { dialog, _ ->
                 dialog.dismiss()
             }
             create().show()
@@ -281,25 +282,27 @@ class UploadFragment : Fragment() {
         }
 
         call.enqueue(object : Callback<SubmissionResponse> {
+            @SuppressLint("StringFormatInvalid")
             override fun onResponse(call: Call<SubmissionResponse>, response: Response<SubmissionResponse>) {
                 if (response.isSuccessful) {
                     val responseBody = response.body()
                     responseBody?.let {
-                        Toast.makeText(context, "Upload erfolgreich: ${it.message}", Toast.LENGTH_LONG).show()
+                        Toast.makeText(context, getString(R.string.toast_Upload_erfolgreich, it.message), Toast.LENGTH_LONG).show()
                         clearInputFields()
                     }
                 } else {
                     val errorBody = response.errorBody()?.string()
-                    Toast.makeText(context, "Fehler beim Upload: $errorBody", Toast.LENGTH_LONG).show()
+                    Toast.makeText(context, getString(R.string.toas_Fehlerbeim_Upload, errorBody), Toast.LENGTH_LONG).show()
+
                 }
             }
 
             override fun onFailure(call: Call<SubmissionResponse>, t: Throwable) {
                 val context = requireContext()
                 if (PhotoAdapter.isOnline(context)) {
-                    Toast.makeText(context, "Pro E-Mail Adresse darf immer nur ein Bild hochgeladen werden.", Toast.LENGTH_LONG).show()
+                    Toast.makeText(context, getString(R.string.toast_ProE_MailAdresse), Toast.LENGTH_LONG).show()
                 } else {
-                    Toast.makeText(context, "Sie sind offline. Bitte stellen Sie eine Internetverbindung her.", Toast.LENGTH_LONG).show()
+                    Toast.makeText(context, getString(R.string.toast_Sie_sind_offline), Toast.LENGTH_LONG).show()
                 }
             }
         })
@@ -324,7 +327,7 @@ class UploadFragment : Fragment() {
         if ((requestCode == REQUEST_PERMISSION_READ_EXTERNAL_STORAGE || requestCode == REQUEST_PERMISSION_READ_MEDIA_IMAGES) && grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
             startImagePicker()
         } else {
-            Toast.makeText(context, "Berechtigung verweigert", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, getString(R.string.toast_Berechtigung_verweigert), Toast.LENGTH_SHORT).show()
         }
     }
 }

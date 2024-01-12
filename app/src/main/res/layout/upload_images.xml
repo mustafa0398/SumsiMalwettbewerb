@@ -50,7 +50,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:minHeight="48dp"
-            android:hint="Vorname Erziehungsberechtigte/r"
+            android:hint="@string/vorname_erziehungsberechtigte_r"
             android:inputType="textPersonName"
             android:padding="12dp"
             android:layout_marginTop="16dp" />
@@ -60,7 +60,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:minHeight="48dp"
-            android:hint="Name Erziehungsberechtigte/r"
+            android:hint="@string/name_erziehungsberechtigte_r"
             android:inputType="textPersonName"
             android:padding="12dp"
             android:layout_marginTop="16dp" />
@@ -70,7 +70,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:minHeight="48dp"
-            android:hint="Vorname des Kindes"
+            android:hint="@string/vorname_des_kindes"
             android:inputType="textPersonName"
             android:padding="12dp"
             android:layout_marginTop="16dp" />
@@ -80,7 +80,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:minHeight="48dp"
-            android:hint="Alter des Kindes"
+            android:hint="@string/alter_des_kindes"
             android:inputType="textPersonName"
             android:padding="12dp"
             android:layout_marginTop="16dp" />
@@ -91,7 +91,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:minHeight="48dp"
-            android:hint="E-Mail-Adresse zum Verständigen"
+            android:hint="@string/hint_email"
             android:inputType="textEmailAddress"
             android:padding="12dp"/>
 
@@ -99,7 +99,7 @@
             android:id="@+id/btnUpload"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Bild auswählen" />
+            android:text="@string/bild_ausw_hlen" />
 
         <ImageView
             android:id="@+id/selectedImage"
@@ -114,25 +114,25 @@
             android:id="@+id/cbTerms"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Zustimmung Datenschutzerklärung"/>
+            android:text="@string/zustimmung_datenschutzerkl_rung"/>
 
         <CheckBox
             android:id="@+id/cbParticipation"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Zustimmung an der Teilnahme" />
+            android:text="@string/zustimmung_an_der_teilnahme" />
 
         <CheckBox
             android:id="@+id/cbMailNotification"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Zustimmung zu Mail-Benachrichtigung" />
+            android:text="@string/zustimmung_zu_mail_benachrichtigung" />
 
         <Button
             android:id="@+id/btnSubmit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="ABSENDEN"/>
+            android:text="@string/absenden"/>
 
     </LinearLayout>
 
