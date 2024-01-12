@@ -166,9 +166,9 @@ class PhotoFragment : Fragment() {
         if (imageUrl == null) return null
 
         val okHttpClient = OkHttpClient.Builder()
-            .connectTimeout(30, TimeUnit.SECONDS)
-            .readTimeout(30, TimeUnit.SECONDS)
-            .writeTimeout(30, TimeUnit.SECONDS)
+            .connectTimeout(80, TimeUnit.SECONDS)
+            .readTimeout(80, TimeUnit.SECONDS)
+            .writeTimeout(80, TimeUnit.SECONDS)
             .build()
 
         val request = Request.Builder().url(imageUrl).build()
