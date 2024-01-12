@@ -21,6 +21,7 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import android.net.ConnectivityManager
+import androidx.core.content.ContentProviderCompat.requireContext
 
 class PhotoAdapter(private val context: Context, private var photos: MutableList<Photo>) :
     RecyclerView.Adapter<PhotoAdapter.PhotoViewHolder>() {
@@ -54,14 +55,20 @@ class PhotoAdapter(private val context: Context, private var photos: MutableList
 
 
         if (isOnline(context)) {
-            Picasso.get()
-                .load(photo.imageUrl)
-                .resize(width, height)
-                .into(holder.photoImageView)
+            photo.imageUrl?.let { url ->
+                if (url.isNotBlank()) {
+                    Picasso.get()
+                        .load(url)
+                        .resize(width, height)
+                        .into(holder.photoImageView)
+                }
+            }
         } else {
             photo.localImagePath?.let { path ->
-                val bitmap = BitmapFactory.decodeFile(path)
-                holder.photoImageView.setImageBitmap(bitmap)
+                if (path.isNotBlank()) {
+                    val bitmap = BitmapFactory.decodeFile(path)
+                    holder.photoImageView.setImageBitmap(bitmap)
+                }
             }
         }
 
@@ -104,7 +111,7 @@ class PhotoAdapter(private val context: Context, private var photos: MutableList
             .setPositiveButton((R.string.butto_Abstimmen)) { dialog, _ ->
                 val email = emailEditText.text.toString()
                 if (email.isNotEmpty() && Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-                    storeVote(photoId, email) { newVoteCount ->
+                    storeVoteWithCheck(photoId, email) { newVoteCount ->
                         updateVotesDisplay(newVoteCount)
                     }
                 } else {
@@ -116,6 +123,41 @@ class PhotoAdapter(private val context: Context, private var photos: MutableList
             .show()
     }
 
+    private fun storeVoteWithCheck(submissionId: String, email: String, updateVotesDisplay: (Int) -> Unit) {
+        fetchSettings { settings ->
+            if (settings?.data?.voting_open == true) {
+                storeVote(submissionId, email, updateVotesDisplay)
+            } else {
+                Toast.makeText(context, "Die Abstimmung ist derzeit nicht möglich.", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+    private fun fetchSettings(callback: (SettingsResponse?) -> Unit) {
+        val retrofit = Retrofit.Builder()
+            .baseUrl("https://sumsi.dev.webundsoehne.com/")
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+
+        val service = retrofit.create(ApiService::class.java)
+        val authToken = RetrofitClient.getStoredAuthToken(this.context)
+        Log.d("PhotoAdapter", "AuthToken: $authToken")
+
+        service.getSettings("Bearer $authToken").enqueue(object : Callback<SettingsResponse> {
+            override fun onResponse(call: Call<SettingsResponse>, response: Response<SettingsResponse>) {
+                if (response.isSuccessful) {
+                    callback(response.body())
+                } else {
+                    callback(null)
+                }
+            }
+
+            override fun onFailure(call: Call<SettingsResponse>, t: Throwable) {
+                callback(null)
+            }
+        })
+    }
+
     private fun storeVote(submissionId: String, email: String, updateVotesDisplay: (Int) -> Unit) {
         val retrofit = Retrofit.Builder()
             .baseUrl("https://sumsi.dev.webundsoehne.com/")
@@ -123,26 +165,11 @@ class PhotoAdapter(private val context: Context, private var photos: MutableList
             .build()
 
         val service = retrofit.create(ApiService::class.java)
+        val authToken = RetrofitClient.getStoredAuthToken(this.context)
+        Log.d("PhotoAdapter", "AuthToken: $authToken")
         val voteBody = VoteBody(email)
 
-        service.storeVote("Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSU" +
-                "zI1NiJ9.eyJhdWQi" + "OiIxIiwianRpIjoiYTExNjYwNDE0ZTJjM2ExODBmZGN" +
-                "mOGIxZTExYzcwMjlkMThkOTA2ZmYxZjZiNGU1YjUwYzJhMTNjZDA1ZTQ4ZmZlZTM3ZGZkYWYy" +
-                "ZjQ3N2IiLCJpYXQiOjE3MDUwMDk5NzEuNDAwNDY4LCJuYmYiOjE3MDUwM" +
-                "Dk5NzEuNDAwNDc1LCJleHAiOjE3MzY2MzIzNzEuMzkwMjY1LCJzdWIiOiI" +
-                "xIiwic2NvcGVzIjpbXX0.NvUJHZ_XC6Lj1M0cWUBvPu9ahG5QR_d-wvoM" +
-                "vYXoqjUl8rO6kccbMifthMQA5OuXT1l_8A0EwDkM8LqJTaOdMKM9UNZiy5" +
-                "iYFKGm97yksJXYmyk0g2xRjJ6tG2JBqJCL0y3dLs8yj9Ba7rWsOdfSTcJ" +
-                "22WE4wmjp9nt9QKHY3paIeV97u5F9FsrIOms2gjQfu2XGk1vrKkHSjnNhbWu" +
-                "4Xnmp77lfbYWzOYavVKLWRwByeVOHiSz6o4rW9QazqmG9B2DVbR4NIAc0Euj" +
-                "VrAGJ56o5o_NHuk2kGdYXqvR7oexyEILGEFhsF4qGwBNvofahXgLiOAob-rF" +
-                "MgUKUxy5Vz-tz5cHsoVxCrljUu8mYl8kwUwacql2YKUto_K7iH5cufFULWBLXQ" +
-                "vbZUH8Tw_c-VbguPBK4ZfFDK78Kg4c7VEl7-ICQPCnrGFWX49DjTrSuCq4L_6H" +
-                "xY4s-EaM2EcftysebVN4UEZPA49xzyRD8sH71TLFXoliyrghKfo8h7YOU4GJ5" +
-                "yoWvR9htc8ZwkhjcMWpQiWUasuQHFr_KPF8fKXI2Gqcr8oymv-363iJaVHJ" +
-                "v5KYBoHc7bB5e5ED4ZleVpkdnpB5tBbNyutsnhfrH13r8_AnrMk03O30hGJX" +
-                "EsZBJRHBd_JuwGiQTR2KnaS8uCpMeRcj5cmZeK6" +
-                "XKrgyNf9k", submissionId, voteBody).enqueue(object : Callback<VoteResponse> {
+        service.storeVote("Bearer $authToken", submissionId, voteBody).enqueue(object : Callback<VoteResponse> {
             override fun onResponse(call: Call<VoteResponse>, response: Response<VoteResponse>) {
                 if (response.isSuccessful) {
                     val responseBody = response.body()
@@ -181,25 +208,11 @@ class PhotoAdapter(private val context: Context, private var photos: MutableList
             .addConverterFactory(GsonConverterFactory.create())
             .build()
         val service = retrofit.create(ApiService::class.java)
+        val authToken = RetrofitClient.getStoredAuthToken(this.context)
 
-        service.countVotes("Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSU" +
-                "zI1NiJ9.eyJhdWQi" + "OiIxIiwianRpIjoiYTExNjYwNDE0ZTJjM2ExODBmZGN" +
-                "mOGIxZTExYzcwMjlkMThkOTA2ZmYxZjZiNGU1YjUwYzJhMTNjZDA1ZTQ4ZmZlZTM3ZGZkYWYy" +
-                "ZjQ3N2IiLCJpYXQiOjE3MDUwMDk5NzEuNDAwNDY4LCJuYmYiOjE3MDUwM" +
-                "Dk5NzEuNDAwNDc1LCJleHAiOjE3MzY2MzIzNzEuMzkwMjY1LCJzdWIiOiI" +
-                "xIiwic2NvcGVzIjpbXX0.NvUJHZ_XC6Lj1M0cWUBvPu9ahG5QR_d-wvoM" +
-                "vYXoqjUl8rO6kccbMifthMQA5OuXT1l_8A0EwDkM8LqJTaOdMKM9UNZiy5" +
-                "iYFKGm97yksJXYmyk0g2xRjJ6tG2JBqJCL0y3dLs8yj9Ba7rWsOdfSTcJ" +
-                "22WE4wmjp9nt9QKHY3paIeV97u5F9FsrIOms2gjQfu2XGk1vrKkHSjnNhbWu" +
-                "4Xnmp77lfbYWzOYavVKLWRwByeVOHiSz6o4rW9QazqmG9B2DVbR4NIAc0Euj" +
-                "VrAGJ56o5o_NHuk2kGdYXqvR7oexyEILGEFhsF4qGwBNvofahXgLiOAob-rF" +
-                "MgUKUxy5Vz-tz5cHsoVxCrljUu8mYl8kwUwacql2YKUto_K7iH5cufFULWBLXQ" +
-                "vbZUH8Tw_c-VbguPBK4ZfFDK78Kg4c7VEl7-ICQPCnrGFWX49DjTrSuCq4L_6H" +
-                "xY4s-EaM2EcftysebVN4UEZPA49xzyRD8sH71TLFXoliyrghKfo8h7YOU4GJ5" +
-                "yoWvR9htc8ZwkhjcMWpQiWUasuQHFr_KPF8fKXI2Gqcr8oymv-363iJaVHJ" +
-                "v5KYBoHc7bB5e5ED4ZleVpkdnpB5tBbNyutsnhfrH13r8_AnrMk03O30hGJX" +
-                "EsZBJRHBd_JuwGiQTR2KnaS8uCpMeRcj5cmZeK6" +
-                "XKrgyNf9k", submissionId).enqueue(object : Callback<VoteCountResponse> {
+        Log.d("PhotoAdapter", "AuthToken: $authToken")
+
+        service.countVotes("Bearer $authToken", submissionId).enqueue(object : Callback<VoteCountResponse> {
             override fun onResponse(call: Call<VoteCountResponse>, response: Response<VoteCountResponse>) {
                 if (response.isSuccessful) {
                     val voteCount = response.body()?.data?.votes ?: 0

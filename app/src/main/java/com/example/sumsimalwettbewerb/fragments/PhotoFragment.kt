@@ -19,6 +19,7 @@ import com.example.sumsimalwettbewerb.ApiService
 import com.example.sumsimalwettbewerb.Photo
 import com.example.sumsimalwettbewerb.PhotoAdapter
 import com.example.sumsimalwettbewerb.R
+import com.example.sumsimalwettbewerb.RetrofitClient
 import com.example.sumsimalwettbewerb.Submission
 import com.example.sumsimalwettbewerb.SumsiDao
 import com.example.sumsimalwettbewerb.SumsiData
@@ -79,25 +80,10 @@ class PhotoFragment : Fragment() {
             .build()
 
         val service = retrofit.create(ApiService::class.java)
+        val authToken = RetrofitClient.getStoredAuthToken(requireContext())
+        Log.d("PhotoAdapter", "AuthToken: $authToken")
 
-        service.getAllSubmissions("Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSU" +
-                "zI1NiJ9.eyJhdWQi" + "OiIxIiwianRpIjoiYTExNjYwNDE0ZTJjM2ExODBmZGN" +
-                "mOGIxZTExYzcwMjlkMThkOTA2ZmYxZjZiNGU1YjUwYzJhMTNjZDA1ZTQ4ZmZlZTM3ZGZkYWYy" +
-                "ZjQ3N2IiLCJpYXQiOjE3MDUwMDk5NzEuNDAwNDY4LCJuYmYiOjE3MDUwM" +
-                "Dk5NzEuNDAwNDc1LCJleHAiOjE3MzY2MzIzNzEuMzkwMjY1LCJzdWIiOiI" +
-                "xIiwic2NvcGVzIjpbXX0.NvUJHZ_XC6Lj1M0cWUBvPu9ahG5QR_d-wvoM" +
-                "vYXoqjUl8rO6kccbMifthMQA5OuXT1l_8A0EwDkM8LqJTaOdMKM9UNZiy5" +
-                "iYFKGm97yksJXYmyk0g2xRjJ6tG2JBqJCL0y3dLs8yj9Ba7rWsOdfSTcJ" +
-                "22WE4wmjp9nt9QKHY3paIeV97u5F9FsrIOms2gjQfu2XGk1vrKkHSjnNhbWu" +
-                "4Xnmp77lfbYWzOYavVKLWRwByeVOHiSz6o4rW9QazqmG9B2DVbR4NIAc0Euj" +
-                "VrAGJ56o5o_NHuk2kGdYXqvR7oexyEILGEFhsF4qGwBNvofahXgLiOAob-rF" +
-                "MgUKUxy5Vz-tz5cHsoVxCrljUu8mYl8kwUwacql2YKUto_K7iH5cufFULWBLXQ" +
-                "vbZUH8Tw_c-VbguPBK4ZfFDK78Kg4c7VEl7-ICQPCnrGFWX49DjTrSuCq4L_6H" +
-                "xY4s-EaM2EcftysebVN4UEZPA49xzyRD8sH71TLFXoliyrghKfo8h7YOU4GJ5" +
-                "yoWvR9htc8ZwkhjcMWpQiWUasuQHFr_KPF8fKXI2Gqcr8oymv-363iJaVHJ" +
-                "v5KYBoHc7bB5e5ED4ZleVpkdnpB5tBbNyutsnhfrH13r8_AnrMk03O30hGJX" +
-                "EsZBJRHBd_JuwGiQTR2KnaS8uCpMeRcj5cmZeK6" +
-                "XKrgyNf9k").enqueue(object : Callback<ApiResult> {
+        service.getAllSubmissions("Bearer $authToken").enqueue(object : Callback<ApiResult> {
             override fun onResponse(call: Call<ApiResult>, response: Response<ApiResult>) {
                 if (response.isSuccessful) {
                     val submissions = response.body()?.data ?: emptyList()

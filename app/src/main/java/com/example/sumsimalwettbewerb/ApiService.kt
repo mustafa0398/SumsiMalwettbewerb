@@ -2,6 +2,7 @@ package com.example.sumsimalwettbewerb
 
 import okhttp3.MultipartBody
 import retrofit2.Call
+import retrofit2.Response
 import retrofit2.http.*
 
 interface ApiService {
@@ -40,9 +41,13 @@ interface ApiService {
     ): Call<VoteCountResponse>
 
     @GET("api/v1/settings")
-    fun returnSettings(
+    fun getSettings(
         @Header("Authorization") authHeader: String
     ): Call<SettingsResponse>
 
+    @POST("api/v1/login")
+    fun login(
+        @Body loginData :LoginData
+    ): Call<LoginResponse>
 
 }

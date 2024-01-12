@@ -52,7 +52,25 @@ data class SubmissionResponse(
 )
 
 data class SettingsResponse(
-    val submission_open: Boolean,
-    val voting_open: Boolean
+    val status: String,
+    val status_code: Int,
+    val message: String,
+    val data: SettingsData
+) {
+    data class SettingsData(
+        val submission_open: Boolean,
+        val voting_open: Boolean
+    )
+}
+
+data class LoginResponse(
+    val status: String,
+    val token: String
 )
+
+data class LoginData(
+    val email: String,
+    val password: String
+)
+
 

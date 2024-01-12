@@ -1,6 +1,7 @@
 package com.example.sumsimalwettbewerb
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
@@ -30,6 +31,20 @@ class MainActivity : AppCompatActivity(), InfoDialogFragment.InfoDialogListener 
 
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_nav_view)
         bottomNavigationView.setupWithNavController(navController)
+
+        val storedToken = RetrofitClient.getStoredAuthToken(this)
+        if (storedToken.isEmpty()) {
+            getTokenAndSave()
+        }
+    }
+
+    private fun getTokenAndSave() {
+        RetrofitClient.getToken(this) { token ->
+            if (token.isNotEmpty()) {
+            } else {
+                Log.e("MainActivity", "Token konnte nicht abgerufen werden")
+            }
+        }
     }
 
     fun showPrivacyDetails(view: View) {
