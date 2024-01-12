@@ -214,12 +214,14 @@ class PhotoFragment : Fragment() {
                     votes = photoVotes,
                     hasVoted = false,
                     childName = childName,
-                    childAge = childAge
-                )
+                    childAge = childAge,
+                    createdAt = submission.created_at,
+                    )
                 photos.add(photo)
 
                 remainingSubmissions.remove(submission)
                 if (remainingSubmissions.isEmpty()) {
+                    photos.sortedByDescending { it.createdAt }
                     Handler(Looper.getMainLooper()).post {
                         photoAdapter.notifyDataSetChanged()
                     }
@@ -262,8 +264,8 @@ class PhotoFragment : Fragment() {
                     votes = mutableListOf(),
                     hasVoted = false,
                     childName = sumsiData.child_firstname,
-                    childAge = sumsiData.child_age
-
+                    childAge = sumsiData.child_age,
+                    createdAt = sumsiData.created_at
                 )
             }
             updateAdapter(localPhotos)

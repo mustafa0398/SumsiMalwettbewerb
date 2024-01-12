@@ -4,10 +4,8 @@ import android.app.AlertDialog
 import android.app.Dialog
 import android.os.Bundle
 import android.text.Html
-import android.view.View
-import android.widget.TextView
 import androidx.fragment.app.DialogFragment
-import com.example.sumsimalwettbewerb.R
+
 
 
 class InfoDialogFragment : DialogFragment() {

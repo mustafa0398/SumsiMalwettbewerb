@@ -8,5 +8,6 @@ data class Photo(
     var hasVoted: Boolean,
     val localImagePath: String?,
     val childName: String,
-    val childAge: String
+    val childAge: String,
+    val createdAt: String?
 )
