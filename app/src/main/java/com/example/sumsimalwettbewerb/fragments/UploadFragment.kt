@@ -36,6 +36,8 @@ import android.widget.ImageView
 import com.example.sumsimalwettbewerb.ApiService
 import com.example.sumsimalwettbewerb.PhotoAdapter
 import com.example.sumsimalwettbewerb.R
+import com.example.sumsimalwettbewerb.RetrofitClient
+import com.example.sumsimalwettbewerb.SettingsResponse
 import com.example.sumsimalwettbewerb.SubmissionResponse
 
 class UploadFragment : Fragment() {
@@ -187,6 +189,19 @@ class UploadFragment : Fragment() {
     }
 
     private fun uploadImageToServer(imageUri: Uri) {
+        fetchSettings { settings ->
+            Log.d("UploadImage", "Settings response: $settings")
+            if (settings?.data?.submission_open == true) {
+                Log.d("UploadImage", "Submission is open, performing upload.")
+                performImageUpload(imageUri)
+            } else {
+                Log.d("UploadImage", "Submission is closed, cannot upload.")
+                Toast.makeText(context, "Das Hochladen von Bildern ist derzeit nicht möglich.", Toast.LENGTH_LONG).show()
+            }
+        }
+    }
+
+    private fun performImageUpload(imageUri: Uri) {
         val file = File(getRealPathFromURI(imageUri))
 
         val requestFile = file.asRequestBody("image/*".toMediaTypeOrNull())
@@ -235,26 +250,11 @@ class UploadFragment : Fragment() {
             .build()
 
         val service = retrofit.create(ApiService::class.java)
+        val authToken = RetrofitClient.getStoredAuthToken(requireContext())
+        Log.d("PhotoAdapter", "AuthToken: $authToken")
 
         val call = service.uploadImage(
-            "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9." +
-                    "eyJhdWQiOiIxIiwianRpIjoiOGMxY2RmMTJlMGExMzJkYmYxNGZkZDQ0N" +
-                    "jI1ZTA3ODFmZjA5MzkwNjZkODU1YzMyZmZhY2FhZDIxODU3ZDM0NTBjN" +
-                    "ThkZWQ4MmEyNDM2N2EiLCJpYXQiOjE3MDM2MTAwNzQuNzM0Mzk2LCJuYm" +
-                    "YiOjE3MDM2MTAwNzQuNzM0Mzk5LCJleHAiOjE3MzUyMzI0NzQuNzI3M" +
-                    "zEzLCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.iJ8zGPtlc78E7c15hTFXp" +
-                    "wyk8XTj5qcNcEo08H88lsZ8jjeO3f5W0ux4tEYhPOJ5bhkuzKBfTgAjf2" +
-                    "fS0vu39rqde-wWiCFcZ-B778RnFxAmFgVf_6FICw33_G4lCUdiTPjRBB" +
-                    "RQWtPV78X5KvJMS3SIcPwW6TC9suJF5D49Zu8OtOPENoH4Off_pWTF3p0" +
-                    "n8czoLjIf0V4fcFW8fivdq5qhEVHSflW7H5x-3DFnjnueN81CTXgHs2Zl" +
-                    "Vzgvkhxxlpgz7cNduzj9oCCvMvdNUXI2PWYMzyL8kUwf8BJNEs47EWg2Br" +
-                    "VS4bi_rbBzIHDwPGbAy6nsql6QxtzcJW6QgK-tzK7UHjEPNPrAH5Hpj1" +
-                    "Ow--IZ4votVFkT8PW2BwDsGBlqmHqIpONb4O7hCMae7zB2TIgLXvCgl" +
-                    "Dr5AzVNmFN9K1XGM-uHBw1CCWmoYc_XfyLi3fcOwEnzGAsfAyv5XbRg" +
-                    "HoYg4djbUO7ZiFuM9ixU7HyJoWhBU9PadHm9YEnqLeWOr3BC_VrSLtG6-" +
-                    "eerre20WEBZYPMAoSL8psCFhDrySn8eTARKvY2PagKNsYTJCYm9Y3pt2W" +
-                    "VlpwA-yLC5rUbOqI9CJLjtjBZj5v6wMjPyyb0aXXPPPHIfLoJGRR_9GBi" +
-                    "TgyCDeGaf8TO5yK1OspgCY1YAUQVh_DEr3eIzgWc",
+            "Bearer $authToken",
             imagePart,
             legalGuardianFirstName,
             legalGuardianLastName,
@@ -304,6 +304,31 @@ class UploadFragment : Fragment() {
             }
         })
     }
+
+    private fun fetchSettings(callback: (SettingsResponse?) -> Unit) {
+        val retrofit = Retrofit.Builder()
+            .baseUrl("https://sumsi.dev.webundsoehne.com/")
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+
+        val service = retrofit.create(ApiService::class.java)
+
+        val authToken = RetrofitClient.getStoredAuthToken(requireContext())
+        Log.d("PhotoAdapter", "AuthToken: $authToken")
+        service.getSettings("Bearer $authToken").enqueue(object : Callback<SettingsResponse> {
+            override fun onResponse(call: Call<SettingsResponse>, response: Response<SettingsResponse>) {
+                if (response.isSuccessful) {
+                    callback(response.body())
+                } else {
+                    callback(null)
+                }
+            }
+            override fun onFailure(call: Call<SettingsResponse>, t: Throwable) {
+                callback(null)
+            }
+        })
+    }
+
 
     private fun getRealPathFromURI(contentUri: Uri): String {
         val cursor = context?.contentResolver?.query(contentUri, null, null, null, null)
