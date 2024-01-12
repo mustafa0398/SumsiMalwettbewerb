@@ -5,6 +5,7 @@ import retrofit2.Call
 import retrofit2.http.*
 
 interface ApiService {
+
     @Multipart
     @POST("api/v1/submissions")
     fun uploadImage(
@@ -25,7 +26,6 @@ interface ApiService {
         @Header("Authorization") authHeader: String
     ): Call<ApiResult>
 
-
     @POST("api/v1/submissions/{submissionId}/votings")
     fun storeVote(
         @Header("Authorization") authHeader: String,
@@ -38,6 +38,11 @@ interface ApiService {
         @Header("Authorization") authHeader: String,
         @Path("submissionId") submissionId: String
     ): Call<VoteCountResponse>
+
+    @GET("api/v1/settings")
+    fun returnSettings(
+        @Header("Authorization") authHeader: String
+    ): Call<SettingsResponse>
 
 
 }

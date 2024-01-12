@@ -59,7 +59,6 @@ class UploadFragment : Fragment() {
         private const val REQUEST_PERMISSION_READ_MEDIA_IMAGES = 3000
     }
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -79,7 +78,6 @@ class UploadFragment : Fragment() {
 
         return view
     }
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -186,9 +184,12 @@ class UploadFragment : Fragment() {
             }
         }
     }
+
     private fun uploadImageToServer(imageUri: Uri) {
         val file = File(getRealPathFromURI(imageUri))
+
         val requestFile = file.asRequestBody("image/*".toMediaTypeOrNull())
+
         val imagePart = MultipartBody.Part.createFormData("image", file.name, requestFile)
 
         val legalGuardianFirstName = MultipartBody.Part.createFormData(
@@ -233,6 +234,7 @@ class UploadFragment : Fragment() {
             .build()
 
         val service = retrofit.create(ApiService::class.java)
+
         val call = service.uploadImage(
             "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9." +
                     "eyJhdWQiOiIxIiwianRpIjoiOGMxY2RmMTJlMGExMzJkYmYxNGZkZDQ0N" +
@@ -269,27 +271,24 @@ class UploadFragment : Fragment() {
                     val responseBody = response.body()
                     responseBody?.let {
                         Toast.makeText(context, "Upload erfolgreich: ${it.message}", Toast.LENGTH_LONG).show()
-                        Log.d("UploadSuccess", "Upload erfolgreich: ${it.message}")
                     }
                 } else {
                     val errorBody = response.errorBody()?.string()
                     Toast.makeText(context, "Fehler beim Upload: $errorBody", Toast.LENGTH_LONG).show()
-                    Log.e("UploadError", "Fehler beim Upload: $errorBody")
                 }
             }
 
             override fun onFailure(call: Call<SubmissionResponse>, t: Throwable) {
-                Toast.makeText(context, "Netzwerkfehler oder anderer Fehler: ${t.message}", Toast.LENGTH_LONG).show()
-                Log.e("UploadFailure", "Netzwerkfehler oder anderer Fehler: ${t.message}")
+                Toast.makeText(context, "Pro E-Mail Adresse darf immer nur ein Bild hochgeladen werden.", Toast.LENGTH_LONG).show()
             }
         })
     }
-
 
     private fun getRealPathFromURI(contentUri: Uri): String {
         val cursor = context?.contentResolver?.query(contentUri, null, null, null, null)
         cursor?.moveToFirst()
         val index = cursor?.getColumnIndex(MediaStore.Images.ImageColumns.DATA)
+
         val path = index?.let { cursor.getString(it) }
         cursor?.close()
         return path ?: ""

@@ -45,11 +45,14 @@ data class Submission(
 }
 
 data class SubmissionResponse(
-
     val status: String,
     val status_code: Int,
     val message: String,
     val data: Any?
+)
 
+data class SettingsResponse(
+    val submission_open: Boolean,
+    val voting_open: Boolean
 )
 

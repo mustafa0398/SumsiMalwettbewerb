@@ -2,6 +2,8 @@ package com.example.sumsimalwettbewerb
 
 import android.app.AlertDialog
 import android.content.Context
+import android.graphics.BitmapFactory
+import android.net.NetworkCapabilities
 import android.util.Log
 import android.util.Patterns
 import android.view.LayoutInflater
@@ -12,17 +14,22 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
-import com.example.sumsimalwettbewerb.fragments.PhotoFragment
 import com.squareup.picasso.Picasso
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import android.net.ConnectivityManager
 
-
-class PhotoAdapter(private val context: Context, private val photos: List<Photo>) :
+class PhotoAdapter(private val context: Context, private var photos: MutableList<Photo>) :
     RecyclerView.Adapter<PhotoAdapter.PhotoViewHolder>() {
+
+    class PhotoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val photoImageView: ImageView = itemView.findViewById(R.id.iv_photoImageView)
+        val ivHeart: ImageView = itemView.findViewById(R.id.iv_heart)
+        val tvVoteCount: TextView = itemView.findViewById(R.id.tv_vote_count)
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PhotoViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.fragment_item_photo, parent, false)
@@ -37,10 +44,18 @@ class PhotoAdapter(private val context: Context, private val photos: List<Photo>
         val width = if (holder.photoImageView.width > 0) holder.photoImageView.width else DEFAULT_WIDTH
         val height = if (holder.photoImageView.height > 0) holder.photoImageView.height else DEFAULT_HEIGHT
 
-        Picasso.get()
-            .load(photo.imageUrl)
-            .resize(width, height)
-            .into(holder.photoImageView)
+
+        if (isOnline(context)) {
+            Picasso.get()
+                .load(photo.imageUrl)
+                .resize(width, height)
+                .into(holder.photoImageView)
+        } else {
+            photo.localImagePath?.let { path ->
+                val bitmap = BitmapFactory.decodeFile(path)
+                holder.photoImageView.setImageBitmap(bitmap)
+            }
+        }
 
         holder.tvVoteCount.text = photo.voteCount.toString()
 
@@ -51,14 +66,8 @@ class PhotoAdapter(private val context: Context, private val photos: List<Photo>
                 Toast.makeText(context, "Sie haben dieses Bild bereits bewertet.", Toast.LENGTH_SHORT).show()
             }
         }
-    }
 
-    class PhotoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val photoImageView: ImageView = itemView.findViewById(R.id.iv_photoImageView)
-        val ivHeart: ImageView = itemView.findViewById(R.id.iv_heart)
-        val tvVoteCount: TextView = itemView.findViewById(R.id.tv_vote_count)
     }
-
 
     override fun getItemCount(): Int {
         return photos.size
@@ -93,6 +102,7 @@ class PhotoAdapter(private val context: Context, private val photos: List<Photo>
             .setNegativeButton("Abbrechen", null)
             .show()
     }
+
     private fun storeVote(submissionId: String, email: String, updateVotesDisplay: (Int) -> Unit) {
         val retrofit = Retrofit.Builder()
             .baseUrl("https://sumsi.dev.webundsoehne.com/")
@@ -102,24 +112,24 @@ class PhotoAdapter(private val context: Context, private val photos: List<Photo>
         val service = retrofit.create(ApiService::class.java)
         val voteBody = VoteBody(email)
 
-        service.storeVote("Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9." +
-                "eyJhdWQiOiIxIiwianRpIjoiOGMxY2RmMTJlMGExMzJkYmYxNGZkZDQ0N" +
-                "jI1ZTA3ODFmZjA5MzkwNjZkODU1YzMyZmZhY2FhZDIxODU3ZDM0NTBjN" +
-                "ThkZWQ4MmEyNDM2N2EiLCJpYXQiOjE3MDM2MTAwNzQuNzM0Mzk2LCJuYm" +
-                "YiOjE3MDM2MTAwNzQuNzM0Mzk5LCJleHAiOjE3MzUyMzI0NzQuNzI3M" +
-                "zEzLCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.iJ8zGPtlc78E7c15hTFXp" +
-                "wyk8XTj5qcNcEo08H88lsZ8jjeO3f5W0ux4tEYhPOJ5bhkuzKBfTgAjf2" +
-                "fS0vu39rqde-wWiCFcZ-B778RnFxAmFgVf_6FICw33_G4lCUdiTPjRBB" +
-                "RQWtPV78X5KvJMS3SIcPwW6TC9suJF5D49Zu8OtOPENoH4Off_pWTF3p0" +
-                "n8czoLjIf0V4fcFW8fivdq5qhEVHSflW7H5x-3DFnjnueN81CTXgHs2Zl" +
-                "Vzgvkhxxlpgz7cNduzj9oCCvMvdNUXI2PWYMzyL8kUwf8BJNEs47EWg2Br" +
-                "VS4bi_rbBzIHDwPGbAy6nsql6QxtzcJW6QgK-tzK7UHjEPNPrAH5Hpj1" +
-                "Ow--IZ4votVFkT8PW2BwDsGBlqmHqIpONb4O7hCMae7zB2TIgLXvCgl" +
-                "Dr5AzVNmFN9K1XGM-uHBw1CCWmoYc_XfyLi3fcOwEnzGAsfAyv5XbRg" +
-                "HoYg4djbUO7ZiFuM9ixU7HyJoWhBU9PadHm9YEnqLeWOr3BC_VrSLtG6-" +
-                "eerre20WEBZYPMAoSL8psCFhDrySn8eTARKvY2PagKNsYTJCYm9Y3pt2W" +
-                "VlpwA-yLC5rUbOqI9CJLjtjBZj5v6wMjPyyb0aXXPPPHIfLoJGRR_9GBi" +
-                "TgyCDeGaf8TO5yK1OspgCY1YAUQVh_DEr3eIzgWc", submissionId, voteBody).enqueue(object : Callback<VoteResponse> {
+        service.storeVote("Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSU" +
+                "zI1NiJ9.eyJhdWQi" + "OiIxIiwianRpIjoiYTExNjYwNDE0ZTJjM2ExODBmZGN" +
+                "mOGIxZTExYzcwMjlkMThkOTA2ZmYxZjZiNGU1YjUwYzJhMTNjZDA1ZTQ4ZmZlZTM3ZGZkYWYy" +
+                "ZjQ3N2IiLCJpYXQiOjE3MDUwMDk5NzEuNDAwNDY4LCJuYmYiOjE3MDUwM" +
+                "Dk5NzEuNDAwNDc1LCJleHAiOjE3MzY2MzIzNzEuMzkwMjY1LCJzdWIiOiI" +
+                "xIiwic2NvcGVzIjpbXX0.NvUJHZ_XC6Lj1M0cWUBvPu9ahG5QR_d-wvoM" +
+                "vYXoqjUl8rO6kccbMifthMQA5OuXT1l_8A0EwDkM8LqJTaOdMKM9UNZiy5" +
+                "iYFKGm97yksJXYmyk0g2xRjJ6tG2JBqJCL0y3dLs8yj9Ba7rWsOdfSTcJ" +
+                "22WE4wmjp9nt9QKHY3paIeV97u5F9FsrIOms2gjQfu2XGk1vrKkHSjnNhbWu" +
+                "4Xnmp77lfbYWzOYavVKLWRwByeVOHiSz6o4rW9QazqmG9B2DVbR4NIAc0Euj" +
+                "VrAGJ56o5o_NHuk2kGdYXqvR7oexyEILGEFhsF4qGwBNvofahXgLiOAob-rF" +
+                "MgUKUxy5Vz-tz5cHsoVxCrljUu8mYl8kwUwacql2YKUto_K7iH5cufFULWBLXQ" +
+                "vbZUH8Tw_c-VbguPBK4ZfFDK78Kg4c7VEl7-ICQPCnrGFWX49DjTrSuCq4L_6H" +
+                "xY4s-EaM2EcftysebVN4UEZPA49xzyRD8sH71TLFXoliyrghKfo8h7YOU4GJ5" +
+                "yoWvR9htc8ZwkhjcMWpQiWUasuQHFr_KPF8fKXI2Gqcr8oymv-363iJaVHJ" +
+                "v5KYBoHc7bB5e5ED4ZleVpkdnpB5tBbNyutsnhfrH13r8_AnrMk03O30hGJX" +
+                "EsZBJRHBd_JuwGiQTR2KnaS8uCpMeRcj5cmZeK6" +
+                "XKrgyNf9k", submissionId, voteBody).enqueue(object : Callback<VoteResponse> {
             override fun onResponse(call: Call<VoteResponse>, response: Response<VoteResponse>) {
                 if (response.isSuccessful) {
                     val voteCount = response.body()?.data?.votes ?: 0
@@ -154,24 +164,24 @@ class PhotoAdapter(private val context: Context, private val photos: List<Photo>
             .build()
         val service = retrofit.create(ApiService::class.java)
 
-        service.countVotes("Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9." +
-                "eyJhdWQiOiIxIiwianRpIjoiOGMxY2RmMTJlMGExMzJkYmYxNGZkZDQ0N" +
-                "jI1ZTA3ODFmZjA5MzkwNjZkODU1YzMyZmZhY2FhZDIxODU3ZDM0NTBjN" +
-                "ThkZWQ4MmEyNDM2N2EiLCJpYXQiOjE3MDM2MTAwNzQuNzM0Mzk2LCJuYm" +
-                "YiOjE3MDM2MTAwNzQuNzM0Mzk5LCJleHAiOjE3MzUyMzI0NzQuNzI3M" +
-                "zEzLCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.iJ8zGPtlc78E7c15hTFXp" +
-                "wyk8XTj5qcNcEo08H88lsZ8jjeO3f5W0ux4tEYhPOJ5bhkuzKBfTgAjf2" +
-                "fS0vu39rqde-wWiCFcZ-B778RnFxAmFgVf_6FICw33_G4lCUdiTPjRBB" +
-                "RQWtPV78X5KvJMS3SIcPwW6TC9suJF5D49Zu8OtOPENoH4Off_pWTF3p0" +
-                "n8czoLjIf0V4fcFW8fivdq5qhEVHSflW7H5x-3DFnjnueN81CTXgHs2Zl" +
-                "Vzgvkhxxlpgz7cNduzj9oCCvMvdNUXI2PWYMzyL8kUwf8BJNEs47EWg2Br" +
-                "VS4bi_rbBzIHDwPGbAy6nsql6QxtzcJW6QgK-tzK7UHjEPNPrAH5Hpj1" +
-                "Ow--IZ4votVFkT8PW2BwDsGBlqmHqIpONb4O7hCMae7zB2TIgLXvCgl" +
-                "Dr5AzVNmFN9K1XGM-uHBw1CCWmoYc_XfyLi3fcOwEnzGAsfAyv5XbRg" +
-                "HoYg4djbUO7ZiFuM9ixU7HyJoWhBU9PadHm9YEnqLeWOr3BC_VrSLtG6-" +
-                "eerre20WEBZYPMAoSL8psCFhDrySn8eTARKvY2PagKNsYTJCYm9Y3pt2W" +
-                "VlpwA-yLC5rUbOqI9CJLjtjBZj5v6wMjPyyb0aXXPPPHIfLoJGRR_9GBi" +
-                "TgyCDeGaf8TO5yK1OspgCY1YAUQVh_DEr3eIzgWc", submissionId).enqueue(object : Callback<VoteCountResponse> {
+        service.countVotes("Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSU" +
+                "zI1NiJ9.eyJhdWQi" + "OiIxIiwianRpIjoiYTExNjYwNDE0ZTJjM2ExODBmZGN" +
+                "mOGIxZTExYzcwMjlkMThkOTA2ZmYxZjZiNGU1YjUwYzJhMTNjZDA1ZTQ4ZmZlZTM3ZGZkYWYy" +
+                "ZjQ3N2IiLCJpYXQiOjE3MDUwMDk5NzEuNDAwNDY4LCJuYmYiOjE3MDUwM" +
+                "Dk5NzEuNDAwNDc1LCJleHAiOjE3MzY2MzIzNzEuMzkwMjY1LCJzdWIiOiI" +
+                "xIiwic2NvcGVzIjpbXX0.NvUJHZ_XC6Lj1M0cWUBvPu9ahG5QR_d-wvoM" +
+                "vYXoqjUl8rO6kccbMifthMQA5OuXT1l_8A0EwDkM8LqJTaOdMKM9UNZiy5" +
+                "iYFKGm97yksJXYmyk0g2xRjJ6tG2JBqJCL0y3dLs8yj9Ba7rWsOdfSTcJ" +
+                "22WE4wmjp9nt9QKHY3paIeV97u5F9FsrIOms2gjQfu2XGk1vrKkHSjnNhbWu" +
+                "4Xnmp77lfbYWzOYavVKLWRwByeVOHiSz6o4rW9QazqmG9B2DVbR4NIAc0Euj" +
+                "VrAGJ56o5o_NHuk2kGdYXqvR7oexyEILGEFhsF4qGwBNvofahXgLiOAob-rF" +
+                "MgUKUxy5Vz-tz5cHsoVxCrljUu8mYl8kwUwacql2YKUto_K7iH5cufFULWBLXQ" +
+                "vbZUH8Tw_c-VbguPBK4ZfFDK78Kg4c7VEl7-ICQPCnrGFWX49DjTrSuCq4L_6H" +
+                "xY4s-EaM2EcftysebVN4UEZPA49xzyRD8sH71TLFXoliyrghKfo8h7YOU4GJ5" +
+                "yoWvR9htc8ZwkhjcMWpQiWUasuQHFr_KPF8fKXI2Gqcr8oymv-363iJaVHJ" +
+                "v5KYBoHc7bB5e5ED4ZleVpkdnpB5tBbNyutsnhfrH13r8_AnrMk03O30hGJX" +
+                "EsZBJRHBd_JuwGiQTR2KnaS8uCpMeRcj5cmZeK6" +
+                "XKrgyNf9k", submissionId).enqueue(object : Callback<VoteCountResponse> {
             override fun onResponse(call: Call<VoteCountResponse>, response: Response<VoteCountResponse>) {
                 if (response.isSuccessful) {
                     val voteCount = response.body()?.data?.votes ?: 0
@@ -188,7 +198,6 @@ class PhotoAdapter(private val context: Context, private val photos: List<Photo>
     }
 
     private fun updateVotesDisplay(submissionId: String, newVoteCount: Int) {
-
         val photoIndex = photos.indexOfFirst { it.id == submissionId }
         if (photoIndex != -1) {
             val photo = photos[photoIndex]
@@ -200,5 +209,16 @@ class PhotoAdapter(private val context: Context, private val photos: List<Photo>
         }
     }
 
-}
+    fun updateData(newPhotos: List<Photo>) {
+        this.photos.clear()
+        this.photos.addAll(newPhotos)
+        notifyDataSetChanged()
+    }
 
+    fun isOnline(context: Context): Boolean {
+        val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as? ConnectivityManager
+        val network = connectivityManager?.activeNetwork
+        val connection = connectivityManager?.getNetworkCapabilities(network)
+        return connection != null && connection.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
+    }
+}
