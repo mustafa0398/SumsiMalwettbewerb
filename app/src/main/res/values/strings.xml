@@ -12,10 +12,10 @@
     <string name="home_icon">Home</string>
     <string name="upload_pictures">Upload pictures</string>
     <string name="all_pictures">Photo Library</string>
-    <string name="rated_pictures">Rated pictures</string>
     <string name="welcome_message"><b>Herzlich Willkommen beim grossen <font color ="#880000">SUMSI</font> Malwettbewerb!</b></string>
-    <string name="contest_heading">Sumsi Malwettbewerb.</string>
-    <string name="join_win_heading">Mach mit &amp; gewinne!</string>
+    <string name="contest_heading"><b>Der beste Malwettbewerb aller Zeiten.<br>Und so funktioniert es!</br></b></string>
+    <string name="join_win_heading">Mach mit &amp; gewinne!<br />
+        <b><font color ="#880000">SUMSI</font> freut sich.</b></string>
     <string name="hint_name">Name Erziehungsberechtigte/r</string>
     <string name="hint_email">E-Mail-Adresse zum Verständigen</string>
     <string name="upload">Bild hochladen</string>
@@ -23,23 +23,22 @@
     <string name="information_contest">
         <![CDATA[
             <ul>
-                <li> <b>Zeichnen &amp; malen</b></li>
-                <li> <b>Digitalisieren</b> (Foto oder Scan)</li>
-                <li> <b>Hochladen und einreichen bis 5. November 2021</b></li>
-                <li> Die <b>Ausstellung</b> in der Sumsi-Galerie läuft ab 20. Oktober 2021.</li>
-                <li> Mit Glück einen der <b>10 tollen Preise gewinnen.</b></li>
-                <li> <b>Die Eltern der Gewinner werden per Mail verständigt.</b></li>
-                <li> <b>Der Rechtsweg ist ausgeschlossen.</b></li>
+                <li> Zeichnen &amp; malen</li><br />
+                <li> Digitalisieren (Foto oder Scan)</li><br />
+                <li> Hochladen und einreichen bis <b> 15. Jänner 2024</b></li><br />
+                <li> Die Ausstellung in der Sumsi-Galerie läuft<b> ab 18. Jänner 2024.</b></li><br />
+                <li> Mit Glück einen der <b>10 tollen Preise</b> gewinnen.</li><br />
+                <li> Die Eltern der Gewinner werden per Mail verständigt.</li><br />
+                <li> Der Rechtsweg ist ausgeschlossen.</li><br />
             </ul>
-            <br />
-            <p><b>Ich freue mich auf viele bunte Zeichnungen. Macht mit und schickt mir Eure Träume!</b></p>
-            <br />
-            <p>Eure Raiffeisen Sumsi</p>
+            <p style ="text-align:center;"><b>Ich freue mich auf viele bunte Zeichnungen. Macht mit und schickt mir Eure Träume!</b></p>
+
+            <p style="text-align:center;">Eure Raiffeisen <font color="#880000"><b>SUMSI</b></font></p>
         ]]>
     </string>
-    <string name="custom_css">body { font-family: \'@font/swz721ml\', sans-serif; }</string>
+    <string name="sumsi_gallery"> <p style="text-align:center;"><b>Herzlich willkommen in der großen <font color="#880000"><b>SUMSI</b></font> Galerie</b></p></string>
+    <string name="custom_css">body { font-family: \'@font/swz721le\', sans-serif; }</string>
     <string name="image_name">Image Name</string>
-
     <string name="showPrivacyDetails" translatable="false">
         <![CDATA[
         <strong>Datenschutzhinweise lt. DSGVO</strong><br>
@@ -130,5 +129,6 @@
     <string name="info5" translatable="false"> AGB</string>
     <string name="info6" translatable="false"> Cookie-Präferenzen</string>
     <string name="vote">0</string>
+    <string name="childdetails">Name,Alter</string>
 
 </resources>

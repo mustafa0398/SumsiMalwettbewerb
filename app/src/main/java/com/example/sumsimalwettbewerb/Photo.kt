@@ -7,4 +7,6 @@ data class Photo(
     val votes: MutableList<Vote>,
     var hasVoted: Boolean,
     val localImagePath: String?,
+    val childName: String,
+    val childAge: String
 )

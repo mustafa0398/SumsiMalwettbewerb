@@ -122,6 +122,7 @@ class PhotoFragment : Fragment() {
                                 localImagePath = localImagePath
                             )
 
+
                             executorService.execute {
                                 sumsiDao.insertSumsiData(sumsiData)
                             }
@@ -201,6 +202,9 @@ class PhotoFragment : Fragment() {
         fun processSubmissionAsync(submission: Submission) {
             val photoVotes = submission.votings.map { convertToVote(it) }.toMutableList()
 
+            val childName = submission.child_firstname
+            val childAge = submission.child_age
+
             getLocalImagePath(submission.image?.id) { localImagePath ->
                 val photo = Photo(
                     id = submission.id,
@@ -208,7 +212,9 @@ class PhotoFragment : Fragment() {
                     localImagePath = localImagePath,
                     voteCount = submission.votings.size,
                     votes = photoVotes,
-                    hasVoted = false
+                    hasVoted = false,
+                    childName = childName,
+                    childAge = childAge
                 )
                 photos.add(photo)
 
@@ -251,10 +257,13 @@ class PhotoFragment : Fragment() {
                 Photo(
                     id = sumsiData.id,
                     imageUrl = sumsiData.localImagePath ?: "",
-                    localImagePath = sumsiData.localImagePath, // Verwenden Sie den lokalen Pfad direkt aus der Datenbank
+                    localImagePath = sumsiData.localImagePath,
                     voteCount = sumsiData.votingCount,
                     votes = mutableListOf(),
-                    hasVoted = false
+                    hasVoted = false,
+                    childName = sumsiData.child_firstname,
+                    childAge = sumsiData.child_age
+
                 )
             }
             updateAdapter(localPhotos)

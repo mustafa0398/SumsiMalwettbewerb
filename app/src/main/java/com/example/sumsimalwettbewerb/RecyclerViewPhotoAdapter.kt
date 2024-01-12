@@ -29,6 +29,7 @@ class PhotoAdapter(private val context: Context, private var photos: MutableList
         val photoImageView: ImageView = itemView.findViewById(R.id.iv_photoImageView)
         val ivHeart: ImageView = itemView.findViewById(R.id.iv_heart)
         val tvVoteCount: TextView = itemView.findViewById(R.id.tv_vote_count)
+        val tvChildDetails: TextView = itemView.findViewById(R.id.tvChildDetails)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PhotoViewHolder {
@@ -38,6 +39,13 @@ class PhotoAdapter(private val context: Context, private var photos: MutableList
 
     override fun onBindViewHolder(holder: PhotoViewHolder, position: Int) {
         val photo = photos[position]
+
+        Log.d("MyTag", "Position: $position")
+
+        val childName =photo.childName
+        val childAge = photo.childAge
+
+        Log.d("MyTag", "Name: $childName, Alter: $childAge")
 
         val DEFAULT_WIDTH = 1000
         val DEFAULT_HEIGHT = 700
@@ -57,6 +65,7 @@ class PhotoAdapter(private val context: Context, private var photos: MutableList
             }
         }
 
+
         holder.tvVoteCount.text = photo.voteCount.toString()
 
         holder.ivHeart.setOnClickListener {
@@ -66,6 +75,10 @@ class PhotoAdapter(private val context: Context, private var photos: MutableList
                 Toast.makeText(context, "Sie haben dieses Bild bereits bewertet.", Toast.LENGTH_SHORT).show()
             }
         }
+
+        val childDetails = "${photo.childName}, ${photo.childAge}"
+        holder.tvChildDetails.text = childDetails
+
 
     }
 
@@ -210,8 +223,8 @@ class PhotoAdapter(private val context: Context, private var photos: MutableList
     }
 
     fun updateData(newPhotos: List<Photo>) {
-        this.photos.clear()
-        this.photos.addAll(newPhotos)
+        photos.clear()
+        photos.addAll(newPhotos)
         notifyDataSetChanged()
     }
 

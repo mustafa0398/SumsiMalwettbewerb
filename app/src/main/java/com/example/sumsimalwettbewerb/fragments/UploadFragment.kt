@@ -265,12 +265,27 @@ class UploadFragment : Fragment() {
             mailNotification
         )
 
+        fun clearInputFields() {
+            etLegalGuardianFirstName.text.clear()
+            etLegalGuardianLastName.text.clear()
+            etEmail.text.clear()
+            etChildFirstName.text.clear()
+            etChildAge.text.clear()
+            cbTerms.isChecked = false
+            cbParticipation.isChecked = false
+            cbMailNotification.isChecked = false
+            selectedImageView.setImageURI(null)
+            selectedImageView.visibility = View.GONE
+            selectedImageUri = null
+        }
+
         call.enqueue(object : Callback<SubmissionResponse> {
             override fun onResponse(call: Call<SubmissionResponse>, response: Response<SubmissionResponse>) {
                 if (response.isSuccessful) {
                     val responseBody = response.body()
                     responseBody?.let {
                         Toast.makeText(context, "Upload erfolgreich: ${it.message}", Toast.LENGTH_LONG).show()
+                        clearInputFields()
                     }
                 } else {
                     val errorBody = response.errorBody()?.string()
