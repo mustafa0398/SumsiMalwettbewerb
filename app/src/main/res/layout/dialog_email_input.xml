@@ -9,7 +9,7 @@
         android:id="@+id/emailEditText"
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:hint="E-Mail eingeben"
+        android:hint="@string/e_mail_eingeben"
         android:inputType="textEmailAddress"
         android:maxLines="1"/>
 

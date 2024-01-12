@@ -20,7 +20,7 @@
     <string name="hint_email">E-Mail-Adresse zum Verständigen</string>
     <string name="upload">Bild hochladen</string>
     <string name="terms">Zustimmung Datenschutz</string>
-    <string name="information_contest">
+    <string name="information_contest" translatable="true">
         <![CDATA[
             <ul>
                 <li> Zeichnen &amp; malen</li><br />
@@ -130,5 +130,49 @@
     <string name="info6" translatable="false"> Cookie-Präferenzen</string>
     <string name="vote">0</string>
     <string name="childdetails">Name,Alter</string>
+    <string name="cookies_pr_ferenzen" translatable="false">Cookies-Präferenzen</string>
+    <string name="datenschutzinformationen">Datenschutzinformationen</string>
+    <string name="teilnahmebedingungen">Teilnahmebedingungen</string>
+    <string name="impressum">Impressum</string>
+    <string name="vorname_erziehungsberechtigte_r">Vorname Erziehungsberechtigte/r</string>
+    <string name="name_erziehungsberechtigte_r">Name Erziehungsberechtigte/r</string>
+    <string name="vorname_des_kindes">Vorname des Kindes</string>
+    <string name="alter_des_kindes">Alter des Kindes</string>
+    <string name="e_mail_adresse_zum_verst_ndigen">E-Mail-Adresse zum Verständigen</string>
+    <string name="bild_ausw_hlen">Bild auswählen</string>
+    <string name="zustimmung_datenschutzerkl_rung">Zustimmung Datenschutzerklärung</string>
+    <string name="zustimmung_an_der_teilnahme">Zustimmung an der Teilnahme</string>
+    <string name="zustimmung_zu_mail_benachrichtigung">Zustimmung zu Mail-Benachrichtigung</string>
+    <string name="absenden">ABSENDEN</string>
+    <string name="toast">Bitte akzeptieren Sie die Nutzungsbedingungen.</string>
+    <string name="toast2">Bitte wählen Sie zuerst ein Bild aus.</string>
+    <string name="alertDialog_setTitle">Berechtigung erforderlich</string>
+    <string name="alertDialog_setNegativeButton">Ablehnen</string>
+    <string name="alertDialog_setPositiveButton">Einstellungen öffnen</string>
+    <string name="alertDialog_RationaleDialog_setTitle">Berechtigung erforderlich</string>
+    <string name="alertDialog_RationaleDialog_setPositiveButton">Erlauben</string>
+    <string name="alertDialog_RationaleDialog_setNegativeButton">Ablehnen</string>
+    <string name="alertDialog_RationaleDialog_setMessage">Diese App benötigt Zugriff auf Ihr Speichergerät, um Bilder hochzuladen. Bitte erlauben Sie den Zugriff.</string>
+    <string name="alertDialog_setMessage">Die Berechtigung zum Lesen des externen Speichers wurde verweigert. Bitte öffnen Sie die Einstellungen und erteilen Sie die Berechtigung manuell."</string>
+    <string name="toast_Upload_erfolgreich">Upload erfolgreich</string>
+    <string name="toas_Fehlerbeim_Upload">Fehler beim Upload</string>
+    <string name="toast_ProE_MailAdresse">Pro E-Mail Adresse darf immer nur ein Bild hochgeladen werden</string>
+    <string name="toast_Berechtigung_verweigert">Berechtigung verweigert</string>
+    <string name="toast_Sie_sind_offline">Sie sind offline. Bitte stellen Sie eine Internetverbindung her</string>
+    <string name="toast_Netzwerkfehler_oder_anderer_Fehler">Netzwerkfehler oder anderer Fehler</string>
+    <string name="e_mail_eingeben">E-Mail Eingeben</string>
+    <string name="toast_Sie_haben">Sie haben dieses Bild bereits bewertet.</string>
+    <string name="setTitel_Bewerten_Sie_dieses_Foto">Bewerten Sie dieses Foto</string>
+    <string name="setTitel_Bewerten">Bewerten Sie dieses Foto</string>
+    <string name="butto_Abstimmen">Abstimmen</string>
+    <string name="mass_Bitte">Bitte geben Sie eine gültige E-Mail-Adresse ein</string>
+    <string name="mass_Geben_Sie_Ihre">Geben Sie Ihre E-Mail-Adresse ein, um abzustimmen</string>
+    <string name="neBu_Abbrechen">Abbrechen</string>
+    <string name="errorMessage">errorMessage</string>
+    <string name="Ein_Fehler_ist">Ein Fehler ist aufgetreten</string>
+    <string name="toast_3">"toast_3">Ihre Stimme wurde erfolgreich gespeichert</string>
+<string name="EinFehler_ist">Ein Fehler ist aufgetreten: HTTP-Status %1$d</string>
+
+
 
 </resources>
