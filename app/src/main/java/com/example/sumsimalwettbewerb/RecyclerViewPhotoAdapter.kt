@@ -233,10 +233,12 @@ class PhotoAdapter(private val context: Context, private var photos: MutableList
         notifyDataSetChanged()
     }
 
-    fun isOnline(context: Context): Boolean {
-        val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as? ConnectivityManager
-        val network = connectivityManager?.activeNetwork
-        val connection = connectivityManager?.getNetworkCapabilities(network)
-        return connection != null && connection.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
+    companion object {
+        fun isOnline(context: Context): Boolean {
+            val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as? ConnectivityManager
+            val network = connectivityManager?.activeNetwork
+            val connection = connectivityManager?.getNetworkCapabilities(network)
+            return connection != null && connection.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
+        }
     }
 }
